@@ -1,0 +1,33 @@
+{
+  "name": "matrix_problem_solving",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Nguyen Thanh Phong, Huynh Duy Thuc, Phuong Hoang Thong"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.6",
+    "angular-cookies": "^1.6.6",
+    "angular-bootstrap": "^2.5.0",
+    "angular-ui-router": "^1.0.7",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "angular-ui-grid": "^4.0.7",
+    "jquery": "^3.2.1",
+    "metisMenu": "^2.7.0",
+    "morris.js": "morrisjs#^0.5.1",
+    "chart.js": "^2.7.1",
+    "angular-file-upload": "^2.5.0",
+    "ng-file-upload": "^12.2.13"
+  },
+  "private": true
+}
