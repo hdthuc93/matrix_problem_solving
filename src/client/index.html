@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="findLostObject" ng-controller="mainCtrl">
+<html lang="en" ng-app="matrixSolving" ng-controller="mainCtrl">
 
 <head>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="img/favicon.ico">
-    <title>Hệ thống tìm vật thất lạc</title>
+    <title>Hệ thống giải bài tập ma trận</title>
 
     <!-- Font -->
     <link type="text/css" href="https://fonts.googleapis.com/css?family=Muli:400,300" rel="stylesheet">
@@ -55,10 +55,9 @@
     <script type="text/javascript" src="angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script type="text/javascript" src="angular-cookies/angular-cookies.min.js"></script>
     <script type="text/javascript" src="angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script type="text/javascript" src="angular-ui-router/release/stateEvents.min.js"></script>    
+    <script type="text/javascript" src="angular-ui-router/release/stateEvents.min.js"></script>
     <script type="text/javascript" src="angular-ui-grid/ui-grid.min.js"></script>
     <script type="text/javascript" src="ng-file-upload/ng-file-upload.min.js"></script>
-    <script src="chart.js/dist/Chart.min.js"></script>
     <!-- MY SOURCE CODE -->
     <!--1 components-->
     <script type="text/javascript" src="js/modules/helper.js"></script>
@@ -69,22 +68,8 @@
     <script type="text/javascript" src="js/directives/loading.js"></script>
     <!--3.2 controllers-->
     <script type="text/javascript" src="js/controllers/main-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/category-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/lost-item-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/found-item-ctrl.js"></script>
     <script type="text/javascript" src="js/controllers/login-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/item-list-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/item-found-list-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/item-lost-list-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/item-matched-list-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/track-item-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/matched-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/user-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/item-report.js"></script>
-    <script type="text/javascript" src="js/controllers/location-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/location-edit-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/storage-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/storage-edit-ctrl.js"></script>
+    <script type="text/javascript" src="js/controllers/task-list-ctrl.js"></script>
 </head>
 
 <body>
@@ -92,7 +77,7 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav ng-show="isLoggedIn" class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -100,12 +85,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Hệ thống tìm vật thất lạc</a>
+                <a class="navbar-brand" href="#">Hệ thống giải bài tập ma trận</a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
+                <!-- <li class="dropdown">
                     <a class="dropdown-toggle text-danger" data-toggle="dropdown" href="#/lost">
                         <i class="fa fa-plus fa-fw"></i> Tìm vật
                     </a>
@@ -114,7 +99,7 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#/found">
                         <i class="fa fa-plus fa-fw"></i> Nhặt được
                     </a>
-                </li>
+                </li> -->
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
@@ -158,52 +143,53 @@
                         <!-- </li> -->
                         <li>
                             <a href="#">
-                                <i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                                <i class="fa fa-dashboard fa-fw"></i> Thông tin</a>
+                        </li>
+                        <li>
+                            <a href="#/task">
+                                <i class="fa fa-dashboard fa-fw"></i> Danh sách bài tập</a>
                         </li>
                         <li>
                             <a href="#">
-                                <i class="fa fa-list fa-fw"></i> Danh sách vật phẩm
+                                <i class="fa fa-list fa-fw"></i> Dành cho quản trị
                                 <span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#/items">Tất cả vật phẩm</a>
+                                    <a href="#/items">Tổ chức thi online</a>
                                 </li>
                                 <li>
-                                    <a href="#/itemslost">Vật phẩm mất</a>
-                                </li>
-                                <li>
-                                    <a href="#/itemsfound">Vật phẩm tìm thấy</a>
-                                </li>
-                                <li>
-                                    <a href="#/itemsmatched">Vật phẩm trùng khớp</a>
+                                    <a href="#/items">Thay dổi quy định</a>
                                 </li>
                             </ul>
                         </li>
-                        <li ng-show="masterUserRole==1">
+                        <li>
                             <a href="#">
-                                <i class="fa fa-cog fa-fw"></i> Cài đặt hệ thống
+                                <i class="fa fa-list fa-fw"></i> Dành cho giáo viên
                                 <span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#/location">Địa điểm</a>
+                                    <a href="#/items">Soạn bài tập</a>
                                 </li>
                                 <li>
-                                    <a href="#/storage">Kho cất giữ</a>
-                                </li>
-                                <li>
-                                    <a href="#/category">Thể loại vật phẩm</a>
-                                </li>
-                                <li>
-                                    <a href="#/listuser">Người dùng</a>
+                                    <a href="#/items">Chấm điểm</a>
                                 </li>
                             </ul>
                         </li>
-                        <li ng-show="masterUserRole==1">
-                            <a href="#/report">
-                                <i class="fa fa-pie-chart" aria-hidden="true"></i> Thống kê
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-list fa-fw"></i> Dành cho học sinh
+                                <span class="fa arrow"></span>
                             </a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#/items">Làm bài tập</a>
+                                </li>
+                                <li>
+                                    <a href="#/items">Thi online</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>

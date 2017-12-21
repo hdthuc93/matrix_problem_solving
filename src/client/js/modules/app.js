@@ -1,6 +1,6 @@
-var app = angular.module("findLostObject", [
+var app = angular.module("matrixSolving", [
     'ui.bootstrap',
-    'ui.router','ui.router.state.events',
+    'ui.router', 'ui.router.state.events',
     'ngCookies',
     'ui.grid',
     'ui.grid.selection',
@@ -30,19 +30,17 @@ module.factory('Auth', ['$cookieStore', '$rootScope', function ($cookieStore, $r
         }
     }
 }])
-module.run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth) {
+module.run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth, $http) {
     $rootScope.$on('$locationChangeStart', function (event) {
-        if (!Auth.isLoggedIn()) {
-            $location.path('/login');
-            $rootScope.isLoggedIn = false;
-        }
-        else {
-            $rootScope.masterUserName = Auth.getUser().name || "Người dùng";
-            $rootScope.user_id = Auth.getUser().user_id || null;
-            $rootScope.isLoggedIn = true;
-            //console.log(Auth)
-            //$location.path('/');
-        }
+        // if (!Auth.isLoggedIn()) {
+        //     $location.path('/login');
+        //     $rootScope.isLoggedIn = false;
+        // }
+        // else {
+        //     $rootScope.masterUserName = Auth.getUser().name || "Người dùng";
+        //     $rootScope.user_id = Auth.getUser().user_id || null;
+        //     $rootScope.isLoggedIn = true;
+        // }
     });
 }]);
 

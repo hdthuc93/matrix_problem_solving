@@ -1,4 +1,4 @@
-var app = angular.module('findLostObject')
+var app = angular.module('matrixSolving')
 app.controller('loginCtrl', ['$scope', '$cookieStore', '$http', '$rootScope', '$timeout', '$location', 'helper', loginCtrl]);
 
 function loginCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $location, helper) {
