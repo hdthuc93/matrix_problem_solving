@@ -29,8 +29,7 @@ module.factory('Auth', ['$cookieStore', '$rootScope', function ($cookieStore, $r
             }
         }
     }
-}])
-module.run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth, $http) {
+}]).run(['$rootScope', '$location', 'Auth', '$http', function ($rootScope, $location, Auth, $http) {
     $rootScope.$on('$locationChangeStart', function (event) {
         // if (!Auth.isLoggedIn()) {
         //     $location.path('/login');
