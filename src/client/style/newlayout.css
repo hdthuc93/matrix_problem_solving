@@ -3,9 +3,10 @@
     height: 150px;
     position: relative;
     background-color: #efefef;
-    background-image: _linear-gradient_legacy(left, #efefef 0%, #efefef 50%, #e1e1e1 50%, #e1e1e1 100%...);
+    background-image: _linear-gradient_legacy(left, #efefef 0%, #efefef 50%, #e1e1e1 50%, #e1e1e1 100%);
     margin: auto;
     border-radius: 100%;
+    margin-bottom: 20px;
 }
 
 .thumbur:before {
@@ -80,17 +81,17 @@
 
 .panel-lite h4 {
     font-weight: 400;
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
-    color: #FF4081;
-    margin: 15px auto;
+    color: #2f6d82;
+    margin: 0px auto 15px;;
 }
 
 .panel-lite a {
     display: inline-block;
     margin-top: 25px;
     text-decoration: none;
-    color: #FF4081;
+    color: #2f6d82;
     font-size: 14px;
 }
 
@@ -147,7 +148,7 @@
 }
 
 .floating-btn {
-    background: #FF4081;
+    background: #2f6d82;
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -295,10 +296,11 @@
 }
 
 .nav>li>a {
-    padding: 15px 15px;
+    padding: 15px;
     color: #212529;
     font-size: 14px;
     font-weight: 600;
+    line-height: 30px;
 }
 
 ul#side-menu .fa {
@@ -446,6 +448,7 @@ i.fa.fa-list.fa-fw {
 
     #page-wrapper {
       min-height: 100vh;
+      padding: 0 15px 20px;
     }
 }
 
@@ -454,7 +457,7 @@ i.fa.fa-list.fa-fw {
         width: calc(50% - 15px);
         margin: 20px 0 0 15px;
     }
-    #page-wrapper {
+    /* #page-wrapper {
         height: 100vh;
-    }
+    } */
 }

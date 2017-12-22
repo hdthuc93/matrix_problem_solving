@@ -1,23 +1,25 @@
 <div class="login-page" ng-controller="loginCtrl">
     <div class="panel-lite">
-        <div class="thumbur">
+        <h4>{{lang.label.mainTitle}}</h4>
+        <h4 ng-show="!isRegister" class="text-center">{{lang.label.login}}</h4>
+        <h4 ng-show="isRegister" class="text-center">{{lang.label.register}}</h4>
+        <div ng-show="!isRegister" class="thumbur">
             <div class="icon-lock"></div>
         </div>
-        <h4>Hệ thống tìm kiếm vật thất lạc</h4>
         <form ng-show="!isRegister" role="form" id="login-form" name="loginForm">
             <div class="box-input">
                 <input class="box-control" name="email" ng-model="email" autofocus ng-class="{
-                        'input-error': loginForm.email.$invalid &&  loginForm.email.$touched }" title="Địa chỉ Email là bắt buộc"
+                        'input-error': loginForm.email.$invalid &&  loginForm.email.$touched }"
                     required>
-                <label class="box-label">Email</label>
+                <label class="box-label">{{lang.login.email}}</label>
             </div>
             <div class="box-input">
                 <input class="box-control" name="password" type="password" ng-model="password" maxlength="30" ng-class="{
-                        'input-error': loginForm.password.$invalid && loginForm.password.$touched }" title="Mật khẩu là bắt buộc"
+                        'input-error': loginForm.password.$invalid && loginForm.password.$touched }"
                     required>
-                <label class="box-label">Mật khẩu</label>
+                <label class="box-label">{{lang.login.password}}</label>
             </div>
-            <a class="link" ng-click="isRegister = true">Đăng ký thành viên</a>
+            <a class="link" ng-click="isRegister = true">{{lang.login.register}}</a>
             <button class="floating-btn" ng-click="login()">
                 <i class="icon-arrow"></i>
             </button>
@@ -27,34 +29,34 @@
                 <input class="box-control" name="lastName" ng-model="item.last_name" autofocus ng-class="{
                             'input-error': registerForm.lastName.$invalid && registerForm.lastName.$touched }" title="Họ tên là bắt buộc"
                     required>
-                <label class="box-label">Họ</label>
+                <label class="box-label">{{lang.register.lastName}}</label>
             </div>
             <div class="box-input">
                 <input class="box-control" name="firstName" ng-model="item.first_name" ng-class="{
-                            'input-error': registerForm.first_name.$invalid && registerForm.first_name.$touched }" title="Họ tên là bắt buộc"
+                            'input-error': registerForm.firstName.$invalid && registerForm.firstName.$touched }" title="Họ tên là bắt buộc"
                     required>
-                <label class="box-label">Tên</label>
+                <label class="box-label">{{lang.register.firstName}}</label>
             </div>
             <div class="box-input">
                 <input class="box-control" ng-pattern="emailPattern" name="email" ng-model="item.email" autofocus ng-class="{
                         'input-error': registerForm.email.$invalid && registerForm.email.$touched }" title="Địa chỉ Email là bắt buộc"
                     required>
-                <label class="box-label">Email</label>
+                <label class="box-label">{{lang.register.email}}</label>
             </div>
             <div class="box-input">
                 <input class="box-control" name="password" type="password" ng-model="item.password" maxlength="30" ng-class="{
                         'input-error': registerForm.password.$invalid && registerForm.password.$touched }" title="Mật khẩu là bắt buộc"
                     required>
-                <label class="box-label">Mật khẩu</label>
+                <label class="box-label">{{lang.register.rePassword}}</label>
             </div>
             <div class="box-input">
                 <input class="box-control" ng-pattern="item.password" name="rePassword" type="password" ng-model="item.repassword" maxlength="30"
                     ng-class="{
                         'input-error': (registerForm.rePassword.$touched && registerForm.rePassword.$error.pattern) || (registerForm.rePassword.$invalid && registerForm.rePassword.$touched) }"
                     title="Mật khẩu là bắt buộc" required>
-                <label class="box-label">Nhập lại mật khẩu</label>
+                <label class="box-label">{{lang.register.rePassword}}</label>
             </div>
-            <a class="link" ng-click="isRegister = false">Quay lại đăng nhập</a>
+            <a class="link" ng-click="isRegister = false">{{lang.register.backToLogin}}</a>
             <button class="floating-btn" ng-click="register()">
                 <i class="fa fa-check"></i>
             </button>

@@ -2,15 +2,15 @@
 <html lang="en" ng-app="matrixSolving" ng-controller="mainCtrl">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="img/favicon.ico">
     <title>{{lang.label.mainTitle}}</title>
 
+
     <!-- Font -->
     <link type="text/css" href="https://fonts.googleapis.com/css?family=Muli:400,300" rel="stylesheet">
-
+    
     <!-- Custom Fonts -->
     <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
 
@@ -32,40 +32,6 @@
     <!-- My Styles -->
     <link href="style/appstyle.css" rel="stylesheet">
     <link href="style/newlayout.css" rel="stylesheet">
-
-    <!-- jQuery -->
-    <script src="jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="metisMenu/dist/metisMenu.min.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="lib/bootstrap-sb-admin-2/js/sb-admin-2.js"></script>
-
-    <!-- ANGULAR JS -->
-    <script type="text/javascript" src="angular/angular.min.js"></script>
-    <script type="text/javascript" src="angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-    <script type="text/javascript" src="angular-cookies/angular-cookies.min.js"></script>
-    <script type="text/javascript" src="angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script type="text/javascript" src="angular-ui-router/release/stateEvents.min.js"></script>
-    <script type="text/javascript" src="angular-ui-grid/ui-grid.min.js"></script>
-    <script type="text/javascript" src="ng-file-upload/ng-file-upload.min.js"></script>
-    <!-- MY SOURCE CODE -->
-    <!--1 components-->
-    <script type="text/javascript" src="js/modules/helper.js"></script>
-    <!--2 modules-->
-    <script type="text/javascript" src="js/modules/app.js"></script>
-    <script type="text/javascript" src="js/modules/routes.js"></script>
-    <!--3.1 directives-->
-    <script type="text/javascript" src="js/directives/loading.js"></script>
-    <script type="text/javascript" src="js/directives/yr-integer.js"></script>
-    <!--3.2 controllers-->
-    <script type="text/javascript" src="js/controllers/main-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/login-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/task-list-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/create-task-ctrl.js"></script>
 </head>
 
 <body>
@@ -89,13 +55,13 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle icon-lang" ng-click="lang.lang!='vi' && changeLang('vi')" ng-class="{'not-apply': lang.lang!='vi'}"
                         href="javascript:void(0)">
-                        <img src="img/Vietnam-Flag-icon.png" title="{{lang.label.changeLangVi}}" height="auto" width="30">
+                        <img src="img/Vietnam-Flag-icon.png" title="{{lang.label.changeLangVi}}">
                     </a>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle icon-lang" ng-click="lang.lang!='en'&& changeLang('en')" ng-class="{'not-apply': lang.lang!='en'}"
                         href="javascript:void(0)">
-                        <img src="img/United-States-Flag-icon.png" title="{{lang.label.changeLangEn}}" height="auto" width="30">
+                        <img src="img/United-States-Flag-icon.png" title="{{lang.label.changeLangEn}}">
                     </a>
                     <!-- /.dropdown -->
                     <li class="dropdown">
@@ -140,7 +106,7 @@
                         <!-- </li> -->
                         <li>
                             <a href="#">
-                                <i class="fa fa-info-circle fa-fw text-info"></i>{{lang.menu.info}}</a>
+                                <i class="fa fa-home fa-fw text-info"></i>{{lang.menu.home}}</a>
                         </li>
                         <li>
                             <a href="#/task">
@@ -153,10 +119,10 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#/items"><i class="fa fa-angle-double-right"></i>{{lang.menu.admin.openExamOnline}}</a>
+                                    <a href="#/create-exam"><i class="fa fa-angle-double-right"></i>{{lang.menu.admin.openExamOnline}}</a>
                                 </li>
                                 <li>
-                                    <a href="#/items"><i class="fa fa-angle-double-right"></i>{{lang.menu.admin.changeReg}}</a>
+                                    <a href="#/regulation"><i class="fa fa-angle-double-right"></i>{{lang.menu.admin.changeReg}}</a>
                                 </li>
                             </ul>
                         </li>
@@ -170,7 +136,7 @@
                                     <a href="#/create-task"><i class="fa fa-angle-double-right"></i>{{lang.menu.teacher.createTask}}</a>
                                 </li>
                                 <li>
-                                    <a href="#/items"><i class="fa fa-angle-double-right"></i>{{lang.menu.teacher.mark}}</a>
+                                    <a href="#/mark"><i class="fa fa-angle-double-right"></i>{{lang.menu.teacher.mark}}</a>
                                 </li>
                             </ul>
                         </li>
@@ -181,10 +147,10 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#/items"><i class="fa fa-angle-double-right"></i>{{lang.menu.student.solveTask}}</a>
+                                    <a href="#/solve-task"><i class="fa fa-angle-double-right"></i>{{lang.menu.student.solveTask}}</a>
                                 </li>
                                 <li>
-                                    <a href="#/items"><i class="fa fa-angle-double-right"></i>{{lang.menu.student.enterExamOnline}}</a>
+                                    <a href="#/enter-exam"><i class="fa fa-angle-double-right"></i>{{lang.menu.student.enterExamOnline}}</a>
                                 </li>
                             </ul>
                         </li>
@@ -203,6 +169,45 @@
     <!-- /#wrapper -->
     <div id="modal_area"></div>
     <my-loading/>
+    
+    <!-- jQuery -->
+    <script src="jquery/dist/jquery.min.js"></script>
+    
+    <!-- Bootstrap Core JavaScript -->
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="metisMenu/dist/metisMenu.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="lib/bootstrap-sb-admin-2/js/sb-admin-2.js"></script>
+
+    <!-- ANGULAR JS -->
+    <script type="text/javascript" src="angular/angular.min.js"></script>
+    <script type="text/javascript" src="angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="angular-cookies/angular-cookies.min.js"></script>
+    <script type="text/javascript" src="angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="angular-ui-router/release/stateEvents.min.js"></script>
+    <script type="text/javascript" src="angular-ui-grid/ui-grid.min.js"></script>
+    <script type="text/javascript" src="ng-file-upload/ng-file-upload.min.js"></script>
+    <!-- MY SOURCE CODE -->
+    <!--1 components-->
+    <script type="text/javascript" src="js/modules/helper.js"></script>
+    <!--2 modules-->
+    <script type="text/javascript" src="js/modules/app.js"></script>
+    <script type="text/javascript" src="js/modules/routes.js"></script>
+    <!--3.1 directives-->
+    <script type="text/javascript" src="js/directives/loading.js"></script>
+    <script type="text/javascript" src="js/directives/yr-integer.js"></script>
+    <!--3.2 controllers-->
+    <script type="text/javascript" src="js/controllers/main-ctrl.js"></script>
+    <script type="text/javascript" src="js/controllers/login-ctrl.js"></script>
+    <script type="text/javascript" src="js/controllers/task-list-ctrl.js"></script>
+    <script type="text/javascript" src="js/controllers/exam-ctrl.js"></script>
+    <script type="text/javascript" src="js/controllers/regulation-ctrl.js"></script>
+    <script type="text/javascript" src="js/controllers/create-task-ctrl.js"></script>
+    <script type="text/javascript" src="js/controllers/mark-ctrl.js"></script>
+    <script type="text/javascript" src="js/controllers/solve-task-ctrl.js"></script>
+    <script type="text/javascript" src="js/controllers/enter-exam-ctrl.js"></script>
 </body>
 
 </html>

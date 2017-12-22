@@ -12,10 +12,12 @@
 		"subtraction":"Trừ cho",
 		"multiplication":"Nhân với",
 		"save":"Lưu",
-		"saveAndGiveAns":"Lưu & Nhập đáp số"
+        "saveAndGiveAns":"Lưu & Nhập đáp số",
+        "register":"Đăng ký",
+        "login":"Đăng nhập vào hệ thống"
     },
     "menu": {
-        "info": "Thông tin",
+        "home": "Trang chủ",
         "taskList": "Danh sách bài tập",
         "admin": {
             "label": "Dành cho quản trị",
@@ -33,6 +35,19 @@
             "enterExamOnline": "Thi Online"
         }
     },
+    "login":{
+        "email":"Nhập địa chỉ Email",
+        "password":"Nhập mật khẩu",
+        "register":"Học sinh đăng ký"
+    },
+    "register":{
+        "firstName":"Tên",
+        "lastName":"Họ",
+        "email":"Địa chỉ Email",
+        "password":"Mật khẩu",
+        "rePassword":"Nhập lại mật khẩu",
+        "backToLogin":"Quay lại đăng nhập"
+    },
     "task":{
         "create":{
             "title":"Soạn bài tập",
@@ -44,10 +59,26 @@
             "level3":"Khó",
             "row":"Chọn số dòng",
             "col":"Chọn số cột",
-            "level3":"Khó",
             "matrixSquare":"Chọn ma trận vuông cấp",
             "fillTask":"Nhập nội dung đề bài"
+        },
+        "mark":{
+            "title":"Chấm điểm"
+        },
+        "solve":{
+            "title":"Giải bài tập ma trận"
         }
+    },
+    "exam":{
+        "create":{
+            "title":"Mở cuộc thi online"
+        },
+        "enter":{
+            "title":"Tham gia cuộc thi online"
+        }
+    },
+    "regulation":{
+        "title":"Quy định"
     },
     "msg": {}
 }

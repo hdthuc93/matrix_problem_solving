@@ -9,11 +9,15 @@ angular.module('matrixSolving').config(['$stateProvider', '$urlRouterProvider', 
         $stateProvider
             .state('index', {
                 url: '/',
-                templateUrl: 'templates/dashboard.html'
+                templateUrl: 'templates/home.html'
             })
             .state('404', {
                 url: '/404',
                 templateUrl: 'templates/404.html'
+            })
+            .state('login', {
+                url: '/login',
+                templateUrl: 'templates/login.html'
             })
             .state('taskList', {
                 url: '/task',
@@ -22,6 +26,26 @@ angular.module('matrixSolving').config(['$stateProvider', '$urlRouterProvider', 
             .state('createTask', {
                 url: '/create-task',
                 templateUrl: 'templates/create-task.html'
+            })
+            .state('createExam', {
+                url: '/create-exam',
+                templateUrl: 'templates/create-examination.html'
+            })
+            .state('regulation', {
+                url: '/regulation',
+                templateUrl: 'templates/regulation.html'
+            })
+            .state('mark', {
+                url: '/mark',
+                templateUrl: 'templates/mark.html'
+            })
+            .state('solveTask', {
+                url: '/solve-task',
+                templateUrl: 'templates/solve-task.html'
+            })
+            .state('enterExam', {
+                url: '/enter-exam',
+                templateUrl: 'templates/enter-examination.html'
             })
     }
 ]).factory('User', [function () {
