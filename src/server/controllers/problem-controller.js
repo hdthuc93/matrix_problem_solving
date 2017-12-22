@@ -5,6 +5,7 @@ async function getAll(req, res) {
         let result = await problemDAO.getAll();
         return res.status(200).json(result);
     } catch(ex) {
+        console.log(ex);
         return res.status(500).json();
     }
 }

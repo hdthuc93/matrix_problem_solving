@@ -1,27 +1,33 @@
 
 
 class MasterDAO {
-    async insert(obj, Model) {
+    constructor(Model, properties) {
+        this.properties = properties;
+        this.Model = Model;
+    }
+
+    async insert(obj) {
         try {
-            let res = await Model.create(obj);
+            let res = await this.Model.create(obj);
         } catch(ex) {
             throw new Error(ex);
         }
         return true;
     }
 
-    async update(obj, Model, id) {
+    async update(obj, id) {
         try {
-            let res = await Model.update(obj, { where: { id: id } });
+            let res = await this.Model.update(obj, { where: { id: id } });
         } catch(ex) {
             throw new Error(ex);
         }
-
         return true;
     }
 
-    async getAll(Model, properties) {
+    async getAll() {
         let lst = [];
+        let properties = this.properties;
+        let Model = this.Model;
         try {
             let res = await Model.findAll();
             for(let i = 0; i < res.length; ++i) {
@@ -40,8 +46,10 @@ class MasterDAO {
         return lst;
     }
 
-    async getById(id, Model, properties) {
+    async getById(id) {
         let obj;
+        let properties = this.properties;
+        let Model = this.Model;
         try {
             let res = await Model.findById(id);
 
@@ -57,6 +65,6 @@ class MasterDAO {
     }
 }
 
-const masterDAO = new MasterDAO();
+// const masterDAO = new MasterDAO();
 
-export default masterDAO;
+export default MasterDAO;
