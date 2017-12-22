@@ -11,6 +11,10 @@ angular.module('matrixSolving').config(['$stateProvider', '$urlRouterProvider', 
                 url: '/',
                 templateUrl: 'templates/dashboard.html'
             })
+            .state('404', {
+                url: '/404',
+                templateUrl: 'templates/404.html'
+            })
             .state('taskList', {
                 url: '/task',
                 templateUrl: 'templates/task-list.html'

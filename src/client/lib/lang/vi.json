@@ -2,6 +2,8 @@
     "lang": "vi",
     "label": {
         "mainTitle": "Hệ thống giải bài tập ma trận",
+        "pageNotFound": "Lỗi không tìm thấy",
+        "pageNotFoundDetail": "Trang bạn truy cập dường như không tồn tại",
         "logout": "Đăng xuất",
         "changeLangVi": "Đổi sang tiếng Việt",
         "changeLangEn": "Đổi sang tiếng Anh",
