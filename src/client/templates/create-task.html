@@ -84,8 +84,8 @@
                 </div>
             </div>
 
-            <!-- set row & col DINH THUC -->
-            <div class="form-group" ng-show="data.hardLevel && data.taskType == 4">
+            <!-- set row & col DINH THUC va HE PT KRAMER -->
+            <div class="form-group" ng-show="data.hardLevel && (data.taskType == 4 || data.taskType == 5)">
                 <div class="row">
                     <div class="col-xs-6">
                         <label class="control-label">{{lang.task.create.matrixSquare}} *</label>
@@ -96,19 +96,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- set row & col HE PT KRAMER -->
-            <div class="form-group" ng-show="data.hardLevel && data.taskType == 5">
-                <div class="row">
-                    Kramer
-                </div>
-            </div>
-            <!-- <div class="form-group text-right">
-                <button type="button" class="btn btn-primary btn-xs" ng-click="fillContentTask()">
-                    Nhập đề bài
-                    <i class="fa fa-arrow-circle-right"></i>
-                </button>
-            </div> -->
         </form>
         <form ng-show="data.hardLevel" role="form" name="taskDetailForm" id="taskDetailForm" class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
             <div class="form-group">
@@ -130,7 +117,7 @@
                     </div>
 
                     <div class="col-sm-12 col-md-3 col-lg-2 text-center">
-                        <label>{{data.taskType==1?lang.label.addition:(data.taskType==2?"lang.label.subtraction ":"")}}</label>
+                        <label>{{data.taskType==1?lang.label.addition:""}}{{data.taskType==2?lang.label.subtraction:""}}</label>
                     </div>
 
                     <!-- MATRIX 2 -->
@@ -194,7 +181,17 @@
                 <!-- MATRIX KRAMER -->
                 <div ng-show="data.taskType == 5" class="row">
                     <div class="col-sm-6 col-md-4 col-lg-3">
-
+                        <table id="matrix-1">
+                            <tr ng-repeat="row in getNumber(data.matrixRowCol) track by $index" ng-init="rowIndex = $index">
+                                <td ng-repeat="col in getNumber(data.matrixRowCol) track by $index" ng-init="colIndex = $index">
+                                    <input yr-integer ng-pattern="cellLimit" placeholder="{{equationVariables[colIndex]}}" name="cell{{rowIndex}}{{colIndex}}" ng-required="data.taskType == 5" type="text"
+                                        class="form-control input-sm matrix-cell" ng-class="{'has-error': taskDetailForm.cell{{rowIndex}}{{colIndex}}.$touched && taskDetailForm.cell{{rowIndex}}{{colIndex}}.$invalid}">
+                                </td>
+                                <td>
+                                    <input placeholder="=" ng-required="data.taskType == 5" type="text" class="form-control input-sm matrix-cell">
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>

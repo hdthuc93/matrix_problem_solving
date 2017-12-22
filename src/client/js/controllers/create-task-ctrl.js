@@ -4,7 +4,8 @@ app.controller('createTaskCtrl', ['$scope', '$cookieStore', '$http', '$rootScope
 function createTaskCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $location, helper) {
 
   $scope.cellLimit = /^(0|9)\d{2}$/;
-  
+  $scope.equationVariables = ['x', 'y', 'z', 't', 'u', 'v', 'k', 'l', 'm']
+
   $scope.getTypeList = function () {
     $http.get("/api/problems/type")
       .then(function (response) {
