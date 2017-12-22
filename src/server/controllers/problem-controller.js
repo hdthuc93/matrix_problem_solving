@@ -3,11 +3,48 @@ import problemDAO from '../DAOs/problemDAO';
 async function getAll(req, res) {
     try {
         let result = await problemDAO.getAll();
-        return res.status(200).json(result);
+
+        for(let i = 0; i < result.length; ++i)
+            result[i].content = JSON.parse(result[i].content);
+
+        return res.status(200).json({
+            msg: "Get all problem type(s) successfully",
+            success: true,
+            data: result
+        });
     } catch(ex) {
         console.log(ex);
-        return res.status(500).json();
+        return res.status(500).json({
+            msg: "Fail to get problems",
+            success: false
+        });
     }
 }
 
-export default { getAll };
+async function insert(req, res) {
+    let obj = {
+        content: req.body.content,
+        is_public: false,
+        num_of_submits: 0,
+        num_of_correct_ans: 0,
+        problem_type_id: req.body.problem_type_id,
+        event_id: req.body.event_id || null,
+        constant_id: req.body.constant_id
+    }
+
+    obj.content = JSON.stringify(obj.content);
+    try {
+        let result = await problemDAO.insert(obj);
+        return res.status(200).json({
+            msg: "Insert problem successfully",
+            success: true
+        });
+    } catch(ex) {
+        return res.status(500).json({
+            msg: "Fail to insert problem",
+            success: false
+        });
+    }
+}
+
+export default { getAll, insert };
