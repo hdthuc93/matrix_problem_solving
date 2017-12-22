@@ -4,7 +4,13 @@
         "mainTitle": "Hệ thống giải bài tập ma trận",
         "logout": "Đăng xuất",
         "changeLangVi": "Đổi sang tiếng Việt",
-        "changeLangEn": "Đổi sang tiếng Anh"
+        "changeLangEn": "Đổi sang tiếng Anh",
+		"selectOne":"Chọn một",
+		"addition":"Cộng với",
+		"subtraction":"Trừ cho",
+		"multiplication":"Nhân với",
+		"save":"Lưu",
+		"saveAndGiveAns":"Lưu & Nhập đáp số"
     },
     "menu": {
         "info": "Thông tin",
@@ -27,7 +33,18 @@
     },
     "task":{
         "create":{
-            "title":"Soạn bài tập"
+            "title":"Soạn bài tập",
+            "selectInfo":"Chọn thông tin",
+            "taskType":"Chọn loại bài tập",
+            "hardLevel":"Chọn độ khó",
+            "level1":"Dễ",
+            "level2":"Vừa",
+            "level3":"Khó",
+            "row":"Chọn số dòng",
+            "col":"Chọn số cột",
+            "level3":"Khó",
+            "matrixSquare":"Chọn ma trận vuông cấp",
+            "fillTask":"Nhập nội dung đề bài"
         }
     },
     "msg": {}

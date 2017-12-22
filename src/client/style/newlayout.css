@@ -328,21 +328,18 @@ i.fa.fa-list.fa-fw {
 
 .box-2 .row~.row {
     background: #fff;
-    border: 1px solid rgb(48, 108, 129);
     border-top: 0;
     margin-bottom: -8px;
 }
 
-.box-2 .row:last-child{
+.box-2>.row:last-child{
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
 }
 
-.box-2 .row:nth-child(2) {
+.box-2>.row:nth-child(2) {
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
-    border-top: 1px solid rgba(0, 0, 0, .0625);
-    border-bottom: 0;
     padding-top: 20px;
 }
 
