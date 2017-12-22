@@ -214,7 +214,7 @@
 /* index */
 
 .navbar-default {
-    background-color: #fff;
+    /* background-color: #fff; */
 }
 
 .box-1 {
@@ -296,8 +296,8 @@
 
 .nav>li>a {
     padding: 15px 15px;
-    color: #72777a;
-    font-size: 13px;
+    color: #212529;
+    font-size: 14px;
     font-weight: 600;
 }
 
@@ -323,17 +323,24 @@ i.fa.fa-dashboard.fa-fw {
 }
 
 i.fa.fa-list.fa-fw {
-    color: #e28701;
+    color: #000;
 }
 
 .box-2 .row~.row {
     background: #fff;
-    border: 1px solid rgba(0, 0, 0, .0625);
+    border: 1px solid rgb(48, 108, 129);
     border-top: 0;
-    border-radius: 5px;
+    margin-bottom: -8px;
+}
+
+.box-2 .row:last-child{
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
 }
 
 .box-2 .row:nth-child(2) {
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
     border-top: 1px solid rgba(0, 0, 0, .0625);
     border-bottom: 0;
     padding-top: 20px;

@@ -15,6 +15,10 @@ angular.module('matrixSolving').config(['$stateProvider', '$urlRouterProvider', 
                 url: '/task',
                 templateUrl: 'templates/task-list.html'
             })
+            .state('createTask', {
+                url: '/create-task',
+                templateUrl: 'templates/create-task.html'
+            })
     }
 ]).factory('User', [function () {
     return {

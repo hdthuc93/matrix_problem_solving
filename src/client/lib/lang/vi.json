@@ -25,5 +25,10 @@
             "enterExamOnline": "Thi Online"
         }
     },
+    "task":{
+        "create":{
+            "title":"Soạn bài tập"
+        }
+    },
     "msg": {}
 }

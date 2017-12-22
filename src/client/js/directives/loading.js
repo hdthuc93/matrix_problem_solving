@@ -11,11 +11,18 @@ function myLoading($http) {
                 return $http.pendingRequests.length > 0;
             };
             scope.$watch(scope.isLoading, function (isLoading) {
+                elm.addClass("showing");
                 if (isLoading) {
-                    elm.show();
+                    setTimeout(function () {
+                        if (elm.hasClass("showing")) {
+                            elm.show();
+                        }
+                    }, 500);
                 } else {
                     elm.hide();
+                    elm.removeClass("showing");
                 }
+
             });
         }
     };

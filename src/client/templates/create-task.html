@@ -1,0 +1,226 @@
+<div class="box-2" ng-controller="createTaskCtrl">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">{{lang.task.create.title}}</h3>
+        </div>
+    </div>
+    <div class="row">
+        <form role="form" name="taskInfoForm" id="taskInfoForm" class="col-lg-3 col-md-4 col-sm-8 col-xs-12">
+            <div class="form-group">
+                <h4>Chọn thông tin</h4>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Loại bài tập *</label>
+                <select ng-model="data.taskType" name="taskType" required class="form-control input-sm" ng-class="{'has-error': taskInfoForm.taskType.$touched && taskInfoForm.taskType.$invalid}">
+                    <option value="" ng-selected="true">Chọn một</option>
+                    <option value="{{type.type_index}}" ng-repeat="type in taskTypeList">{{type.type_name}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Độ khó *</label>
+                <select ng-model="data.hardLevel" name="hardLv" ng-change="changeLevel()" required class="form-control input-sm" ng-class="{'has-error': taskInfoForm.hardLv.$touched && taskInfoForm.hardLv.$invalid}">
+                    <option value="" ng-selected="true">Chọn một</option>
+                    <option value="{{lv}}" ng-repeat="lv in hardLevelList">{{lv.level==1?"Dễ":(lv.level==2?"Vừa":"Khó")}}</option>
+                </select>
+            </div>
+
+            <!-- set row & col CONG TRU -->
+            <div class="form-group" ng-show="data.hardLevel && (data.taskType == 1||data.taskType == 2)">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label class="control-label">Số dòng *</label>
+                        <!-- <input ng-model="data.matrixRow" ng-required="data.taskType == 1||data.taskType == 2" name="matrixRow" type="number" min="2"
+                            max="5" class="form-control input-sm" ng-class="{'has-error': taskInfoForm.matrixRow.$touched && taskInfoForm.matrixRow.$invalid}"> -->
+                        <select ng-model="data.matrixRow" ng-required="data.taskType == 1||data.taskType == 2" name="matrixRow" class="form-control input-sm"
+                            ng-class="{'has-error': taskInfoForm.matrixRow.$touched && taskInfoForm.matrixRow.$invalid}">
+                            <option value="">Chọn một</option>
+                            <option value="{{size.id}}" ng-repeat="size in matrixSize">{{size.value}}</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-6">
+                        <label class="control-label">Số cột *</label>
+                        <!-- <input ng-model="data.matrixCol" ng-required="data.taskType == 1||data.taskType == 2" name="matrixCol" type="number" min="2"
+                            max="5" class="form-control input-sm" ng-class="{'has-error': taskInfoForm.matrixCol.$touched && taskInfoForm.matrixCol.$invalid}"> -->
+                        <select ng-model="data.matrixCol" ng-required="data.taskType == 1||data.taskType == 2" name="matrixCol" class="form-control input-sm"
+                            ng-class="{'has-error': taskInfoForm.matrixCol.$touched && taskInfoForm.matrixCol.$invalid}">
+                            <option value="" ng-selected="true">Chọn một</option>
+                            <option value="{{size.id}}" ng-repeat="size in matrixSize">{{size.value}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- set row & col NHAN -->
+            <div class="form-group" ng-show="data.hardLevel && data.taskType == 3">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label class="control-label">Số dòng (A) *</label>
+                        <!-- <input ng-model="data.matrixRowA" ng-required="data.taskType == 3" name="matrixRowA" type="number" min="2" max="5" class="form-control input-sm"
+                            ng-class="{'has-error': taskInfoForm.matrixRowA.$touched && taskInfoForm.matrixRowA.$invalid}"> -->
+                        <select ng-model="data.matrixRowA" ng-required="data.taskType == 3" name="matrixRowA" class="form-control input-sm" ng-class="{'has-error': taskInfoForm.matrixRowA.$touched && taskInfoForm.matrixRowA.$invalid}">
+                            <option value="" ng-selected="true">Chọn một</option>
+                            <option value="{{size.id}}" ng-repeat="size in matrixSize">{{size.value}}</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-6">
+                        <label class="control-label">Số cột (A) *</label>
+                        <!-- <input ng-model="data.matrixColA" ng-required="data.taskType == 3" name="matrixColA" type="number" min="2" max="5" class="form-control input-sm"
+                            ng-class="{'has-error': taskInfoForm.matrixColA.$touched && taskInfoForm.matrixColA.$invalid}"> -->
+                        <select ng-model="data.matrixColA" ng-required="data.taskType == 3" name="matrixColA" class="form-control input-sm" ng-class="{'has-error': taskInfoForm.matrixColA.$touched && taskInfoForm.matrixColA.$invalid}">
+                            <option value="" ng-selected="true">Chọn một</option>
+                            <option value="{{size.id}}" ng-repeat="size in matrixSize">{{size.value}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" ng-show="data.hardLevel && data.taskType == 3">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label class="control-label">Số dòng (B) *</label>
+                        <!-- <input ng-model="data.matrixRowB" ng-required="data.taskType == 3" name="matrixRowB" type="number" min="2" max="5" class="form-control input-sm"
+                            ng-class="{'has-error': taskInfoForm.matrixRowB.$touched && taskInfoForm.matrixRowB.$invalid}"> -->
+                        <select ng-model="data.matrixRowB" ng-required="data.taskType == 3" name="matrixRowB" class="form-control input-sm" ng-class="{'has-error': taskInfoForm.matrixRowB.$touched && taskInfoForm.matrixRowB.$invalid}">
+                            <option value="" ng-selected="true">Chọn một</option>
+                            <option value="{{size.id}}" ng-repeat="size in matrixSize">{{size.value}}</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-6">
+                        <label class="control-label">Số cột (B) *</label>
+                        <!-- <input ng-model="data.matrixColB" ng-required="data.taskType == 3" name="matrixColB" type="number" min="2" max="5" class="form-control input-sm"
+                            ng-class="{'has-error': taskInfoForm.matrixColB.$touched && taskInfoForm.matrixColB.$invalid}"> -->
+                        <select ng-model="data.matrixColB" ng-required="data.taskType == 3" name="matrixColB" class="form-control input-sm" ng-class="{'has-error': taskInfoForm.matrixColB.$touched && taskInfoForm.matrixColB.$invalid}">
+                            <option value="" ng-selected="true">Chọn một</option>
+                            <option value="{{size.id}}" ng-repeat="size in matrixSize">{{size.value}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- set row & col DINH THUC -->
+            <div class="form-group" ng-show="data.hardLevel && data.taskType == 4">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label class="control-label">Ma trận vuông cấp *</label>
+                        <!-- <input ng-model="data.matrixRowCol" ng-required="data.taskType == 4" name="matrixRowCol" type="number" min="2" max="5" class="form-control input-sm"
+                            ng-class="{'has-error': taskInfoForm.matrixRowCol.$touched && taskInfoForm.matrixRowCol.$invalid}"> -->
+                        <select ng-model="data.matrixRowCol" ng-required="data.taskType == 4" name="matrixRowCol" class="form-control input-sm" ng-class="{'has-error': taskInfoForm.matrixRowCol.$touched && taskInfoForm.matrixRowCol.$invalid}">
+                            <option value="" ng-selected="true">Chọn một</option>
+                            <option value="{{size.id}}" ng-repeat="size in matrixSize">{{size.value}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- set row & col HE PT KRAMER -->
+            <div class="form-group" ng-show="data.hardLevel && data.taskType == 5">
+                <div class="row">
+                    Kramer
+                </div>
+            </div>
+            <!-- <div class="form-group text-right">
+                <button type="button" class="btn btn-primary btn-xs" ng-click="fillContentTask()">
+                    Nhập đề bài
+                    <i class="fa fa-arrow-circle-right"></i>
+                </button>
+            </div> -->
+        </form>
+        <form ng-show="data.hardLevel" role="form" name="taskDetailForm" id="taskDetailForm" class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <h4>Nhập thông tin chi tiết đề bài</h4>
+            </div>
+            <div id="matrix-area" class="form-group">
+                <!-- MATRIX CONG TRU -->
+                <div ng-show="data.taskType == 1||data.taskType == 2" class="row">
+                    <!-- MATRIX 1 -->
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <table id="matrix-1">
+                            <tr ng-repeat="row in getNumber(data.matrixRow) track by $index" ng-init="rowIndex = $index">
+                                <td ng-repeat="col in getNumber(data.matrixCol) track by $index" ng-init="colIndex = $index">
+                                    <input name="cell{{rowIndex}}{{colIndex}}" ng-required="data.taskType == 1||data.taskType == 2" type="text" class="form-control input-sm matrix-cell"
+                                        ng-class="{'has-error': taskDetailForm.cell{{rowIndex}}{{colIndex}}.$touched && taskDetailForm.cell{{rowIndex}}{{colIndex}}.$invalid}">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col-sm-12 col-md-3 col-lg-2 text-center">
+                        <label>{{data.taskType==1?"Cộng với":(data.taskType==2?"Trừ đi":"")}}</label>
+                    </div>
+
+                    <!-- MATRIX 2 -->
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <table id="matrix-2">
+                            <tr ng-repeat="row in getNumber(data.matrixRow) track by $index" ng-init="rowIndex = $index">
+                                <td ng-repeat="col in getNumber(data.matrixCol) track by $index" ng-init="colIndex = $index">
+                                    <input name="cell{{rowIndex}}{{colIndex}}" ng-required="data.taskType == 1||data.taskType == 2" type="text" class="form-control input-sm matrix-cell"
+                                        ng-class="{'has-error': taskDetailForm.cell{{rowIndex}}{{colIndex}}.$touched && taskDetailForm.cell{{rowIndex}}{{colIndex}}.$invalid}">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- MATRIX NHAN -->
+                <div ng-show="data.taskType == 3" class="row">
+                    <!-- MATRIX 1 -->
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <table id="matrix-1">
+                            <tr ng-repeat="row in getNumber(data.matrixRowA) track by $index" ng-init="rowIndex = $index">
+                                <td ng-repeat="col in getNumber(data.matrixColA) track by $index" ng-init="colIndex = $index">
+                                    <input name="cell{{rowIndex}}{{colIndex}}" ng-required="data.taskType == 3" type="text" class="form-control input-sm matrix-cell"
+                                        ng-class="{'has-error': taskDetailForm.cell{{rowIndex}}{{colIndex}}.$touched && taskDetailForm.cell{{rowIndex}}{{colIndex}}.$invalid}">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col-sm-12 col-md-3 col-lg-2 text-center">
+                        <label>Nhân với</label>
+                    </div>
+
+                    <!-- MATRIX 2 -->
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <table id="matrix-2">
+                            <tr ng-repeat="row in getNumber(data.matrixRowB) track by $index" ng-init="rowIndex = $index">
+                                <td ng-repeat="col in getNumber(data.matrixColB) track by $index" ng-init="colIndex = $index">
+                                    <input name="cell{{rowIndex}}{{colIndex}}" ng-required="data.taskType == 3" type="text" class="form-control input-sm matrix-cell"
+                                        ng-class="{'has-error': taskDetailForm.cell{{rowIndex}}{{colIndex}}.$touched && taskDetailForm.cell{{rowIndex}}{{colIndex}}.$invalid}">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- MATRIX DINH THUC -->
+                <div ng-show="data.taskType == 4" class="row">
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <table id="matrix-1">
+                            <tr ng-repeat="row in getNumber(data.matrixRowCol) track by $index" ng-init="rowIndex = $index">
+                                <td ng-repeat="col in getNumber(data.matrixRowCol) track by $index" ng-init="colIndex = $index">
+                                    <input name="cell{{rowIndex}}{{colIndex}}" ng-required="data.taskType == 4" type="text" class="form-control input-sm matrix-cell"
+                                        ng-class="{'has-error': taskDetailForm.cell{{rowIndex}}{{colIndex}}.$touched && taskDetailForm.cell{{rowIndex}}{{colIndex}}.$invalid}">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- MATRIX KRAMER -->
+                <div ng-show="data.taskType == 5" class="row">
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" ng-show="taskInfoForm.$valid&&taskDetailForm.$valid">
+                <button type="button" class="btn btn-primary btn-xs" ng-click="save()">
+                    <i class="fa fa-floppy-o"></i> Lưu
+                </button>
+                <button type="button" class="btn btn-primary btn-xs" ng-click="">
+                    <i class="fa fa-floppy-o"></i> Nhập đáp số và Lưu
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
