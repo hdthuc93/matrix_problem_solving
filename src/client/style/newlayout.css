@@ -302,6 +302,7 @@
 }
 
 ul#side-menu .fa {
+    text-shadow: 0px 1px 1px rgb(218, 176, 66);
     border-radius: 6px;
     display: inline-block;
     font-size: 17px;
@@ -324,6 +325,12 @@ i.fa.fa-dashboard.fa-fw {
 
 i.fa.fa-list.fa-fw {
     color: #000;
+}
+
+@media (max-width: 767px){
+    .box-2>.row:nth-child(n) {
+        margin: 0;
+    }
 }
 
 .box-2 .row~.row {

@@ -409,7 +409,7 @@ table{
         margin-top: 50px;
     }
 }
-@media (max-width: 768px){
+@media (max-width: 767px){
     .navbar {
         position: inherit!important;
     }
@@ -525,6 +525,9 @@ outline: none;
 }
 .navbar-default {
     border-color: #d38a2a;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #d3892a;
 }
 
 .navbar-brand {
