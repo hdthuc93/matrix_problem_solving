@@ -8,12 +8,16 @@ const Constant = sequelize.define('constant', {
     primaryKey: true,
     autoIncrement: true
   },
-  rows_matrix: {
+  min_size: {
     type: Sequelize.INTEGER(4),
     allowNull: false
   },
-  cols_matrix: {
+  max_size: {
     type: Sequelize.INTEGER(4),
+    allowNull: false
+  },
+  level: {
+    type: Sequelize.INTEGER(2),
     allowNull: false
   },
   is_active: {

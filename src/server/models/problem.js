@@ -41,9 +41,17 @@ const Problem = sequelize.define('problem', {
   },
   event_id: {
     type: Sequelize.INTEGER(4),
-    allowNull: false,
+    allowNull: true,
     references: {
       model: 'event',
+      key: 'id'
+    }
+  },
+  constant_id: {
+    type: Sequelize.INTEGER(3),
+    allowNull: false,
+    references: {
+      model: 'constants',
       key: 'id'
     }
   }

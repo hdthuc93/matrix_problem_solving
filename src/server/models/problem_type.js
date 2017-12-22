@@ -11,6 +11,10 @@ const ProblemType = sequelize.define('problem_type', {
   type_name: {
     type: Sequelize.STRING(50),
     allowNull: false
+  },
+  type_index: {
+    type: Sequelize.INTEGER(2),
+    allowNull: false
   }
 }, {
   tableName: 'problem_type'
