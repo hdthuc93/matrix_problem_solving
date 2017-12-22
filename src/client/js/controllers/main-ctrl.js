@@ -1,5 +1,5 @@
 'use-strict'
-var app = angular.module("findLostObject");
+var app = angular.module("matrixSolving");
 
 app.controller("mainCtrl", ['$scope', '$rootScope', 'helper', '$location', '$http', mainCtrl]);
 function mainCtrl($scope, $rootScope, helper, $location, $http) {
@@ -8,34 +8,19 @@ function mainCtrl($scope, $rootScope, helper, $location, $http) {
     }
     init();
 
-    $http.get("/api/items/statistic")
-        .then(function (response) {
-            var data = response.data.data;
-            for (var i in data.threeLost) {
-                data.threeLost[i].fieldAnswerPool = getFieldAnswer(data.threeLost[i].itemId);
-            }
-            for (var i in data.threeFound) {
-                data.threeFound[i].fieldAnswerPool = getFieldAnswer(data.threeLost[i].itemId);
-            }
-            $scope.data = data;
-            console.log($scope.data)
-        });
-
-    function getFieldAnswer(itemId) {
-        var res = $http.get("/api/field_answers/itemid/" + itemId).then(function (response) {
-            return response.data.data;
-        });
-
-        return res.$$state;
+    $scope.changeLang = function (name) {
+        $http.get('lib/lang/' + name + '.json').
+            then(function onSuccess(response) {
+                console.log(11111, response)
+                $rootScope.lang = response.data
+            }).
+            catch(function onError(response) {
+                console.log(22222, response)
+                console.log(response);
+            });
     }
+    $scope.changeLang('vi');
 
-    $scope.goListItem = function (type) {
-        $location.path('/items' + type);
-    }
-
-    $scope.viewItem = function (id) {
-        location.href = "#/track?item=" + id;
-    }
 
 
 }

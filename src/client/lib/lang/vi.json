@@ -1,0 +1,29 @@
+{
+    "lang": "vi",
+    "label": {
+        "mainTitle": "Hệ thống giải bài tập ma trận",
+        "logout": "Đăng xuất",
+        "changeLangVi": "Đổi sang tiếng Việt",
+        "changeLangEn": "Đổi sang tiếng Anh"
+    },
+    "menu": {
+        "info": "Thông tin",
+        "taskList": "Danh sách bài tập",
+        "admin": {
+            "label": "Dành cho quản trị",
+            "openExamOnline": "Mở cuộc thi Online",
+            "changeReg": "Thay đổi quy định"
+        },
+        "teacher": {
+            "label": "Dành cho giáo viên",
+            "createTask": "Soạn bài tập",
+            "mark": "Chấm điểm"
+        },
+        "student": {
+            "label": "Dành cho học sinh",
+            "solveTask": "Giải bài tập",
+            "enterExamOnline": "Thi Online"
+        }
+    },
+    "msg": {}
+}

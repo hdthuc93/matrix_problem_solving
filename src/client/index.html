@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="findLostObject" ng-controller="mainCtrl">
+<html lang="en" ng-app="matrixSolving" ng-controller="mainCtrl">
 
 <head>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="img/favicon.ico">
-    <title>Hệ thống tìm vật thất lạc</title>
+    <title>{{lang.label.mainTitle}}</title>
 
     <!-- Font -->
     <link type="text/css" href="https://fonts.googleapis.com/css?family=Muli:400,300" rel="stylesheet">
@@ -41,24 +41,17 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="raphael/raphael.min.js"></script>
-    <script src="morris.js/morris.min.js"></script>
-    <!-- <script src="../data/morris-data.js"></script> -->
-
     <!-- Custom Theme JavaScript -->
-    <script src="lib/bootstrap-sb-admin-2/js/sb-admin-2.js"></script>
+    <!-- <script src="lib/bootstrap-sb-admin-2/js/sb-admin-2.js"></script> -->
 
     <!-- ANGULAR JS -->
     <script type="text/javascript" src="angular/angular.min.js"></script>
     <script type="text/javascript" src="angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script type="text/javascript" src="angular-cookies/angular-cookies.min.js"></script>
     <script type="text/javascript" src="angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script type="text/javascript" src="angular-ui-router/release/stateEvents.min.js"></script>    
+    <script type="text/javascript" src="angular-ui-router/release/stateEvents.min.js"></script>
     <script type="text/javascript" src="angular-ui-grid/ui-grid.min.js"></script>
     <script type="text/javascript" src="ng-file-upload/ng-file-upload.min.js"></script>
-    <script src="chart.js/dist/Chart.min.js"></script>
     <!-- MY SOURCE CODE -->
     <!--1 components-->
     <script type="text/javascript" src="js/modules/helper.js"></script>
@@ -69,22 +62,8 @@
     <script type="text/javascript" src="js/directives/loading.js"></script>
     <!--3.2 controllers-->
     <script type="text/javascript" src="js/controllers/main-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/category-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/lost-item-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/found-item-ctrl.js"></script>
     <script type="text/javascript" src="js/controllers/login-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/item-list-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/item-found-list-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/item-lost-list-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/item-matched-list-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/track-item-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/matched-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/user-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/item-report.js"></script>
-    <script type="text/javascript" src="js/controllers/location-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/location-edit-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/storage-ctrl.js"></script>
-    <script type="text/javascript" src="js/controllers/storage-edit-ctrl.js"></script>
+    <script type="text/javascript" src="js/controllers/task-list-ctrl.js"></script>
 </head>
 
 <body>
@@ -92,7 +71,7 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav ng-show="isLoggedIn" class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -100,29 +79,30 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Hệ thống tìm vật thất lạc</a>
+                <a class="navbar-brand" href="#">{{lang.label.mainTitle}}</a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
-                    <a class="dropdown-toggle text-danger" data-toggle="dropdown" href="#/lost">
-                        <i class="fa fa-plus fa-fw"></i> Tìm vật
+                    <a class="dropdown-toggle icon-lang" ng-click="lang.lang!='vi' && changeLang('vi')" ng-class="{'not-apply': lang.lang!='vi'}"
+                        href="javascript:void(0)">
+                        <img src="img/Vietnam-Flag-icon.png" title="{{lang.label.changeLangVi}}" height="auto" width="30">
                     </a>
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#/found">
-                        <i class="fa fa-plus fa-fw"></i> Nhặt được
+                    <a class="dropdown-toggle icon-lang" ng-click="lang.lang!='en'&& changeLang('en')" ng-class="{'not-apply': lang.lang!='en'}"
+                        href="javascript:void(0)">
+                        <img src="img/United-States-Flag-icon.png" title="{{lang.label.changeLangEn}}" height="auto" width="30">
                     </a>
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
-                        <i class="fa fa-user fa-fw"></i>{{masterUserName}}
-                        <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <!-- <li>
+                    <!-- /.dropdown -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                            <i class="fa fa-user fa-fw"></i>{{masterUserName}}
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <!-- <li>
                             <a href="#">
                                 <i class="fa fa-user fa-fw"></i> Thông tin</a>
                         </li>
@@ -131,14 +111,14 @@
                                 <i class="fa fa-gear fa-fw"></i> Cài đặt</a>
                         </li>
                         <li class="divider"></li> -->
-                        <li ng-controller="loginCtrl">
-                            <a href="#" ng-click="logout()">
-                                <i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
+                            <li ng-controller="loginCtrl">
+                                <a href="#" ng-click="logout()">
+                                    <i class="fa fa-sign-out fa-fw"></i> {{lang.label.logout}}</a>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+                    <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
 
@@ -158,52 +138,53 @@
                         <!-- </li> -->
                         <li>
                             <a href="#">
-                                <i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                                <i class="fa fa-info-circle fa-fw text-info"></i>{{lang.menu.info}}</a>
+                        </li>
+                        <li>
+                            <a href="#/task">
+                                <i class="fa fa-list fa-fw"></i>{{lang.menu.taskList}}</a>
                         </li>
                         <li>
                             <a href="#">
-                                <i class="fa fa-list fa-fw"></i> Danh sách vật phẩm
+                                <i class="fa fa-graduation-cap fa-fw text-danger"></i>{{lang.menu.admin.label}}
                                 <span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#/items">Tất cả vật phẩm</a>
+                                    <a href="#/items"><i class="fa fa-angle-double-right"></i>{{lang.menu.admin.openExamOnline}}</a>
                                 </li>
                                 <li>
-                                    <a href="#/itemslost">Vật phẩm mất</a>
-                                </li>
-                                <li>
-                                    <a href="#/itemsfound">Vật phẩm tìm thấy</a>
-                                </li>
-                                <li>
-                                    <a href="#/itemsmatched">Vật phẩm trùng khớp</a>
+                                    <a href="#/items"><i class="fa fa-angle-double-right"></i>{{lang.menu.admin.changeReg}}</a>
                                 </li>
                             </ul>
                         </li>
-                        <li ng-show="masterUserRole==1">
+                        <li>
                             <a href="#">
-                                <i class="fa fa-cog fa-fw"></i> Cài đặt hệ thống
+                                <i class="fa fa-graduation-cap fa-fw text-success"></i>{{lang.menu.teacher.label}}
                                 <span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#/location">Địa điểm</a>
+                                    <a href="#/items"><i class="fa fa-angle-double-right"></i>{{lang.menu.teacher.createTask}}</a>
                                 </li>
                                 <li>
-                                    <a href="#/storage">Kho cất giữ</a>
-                                </li>
-                                <li>
-                                    <a href="#/category">Thể loại vật phẩm</a>
-                                </li>
-                                <li>
-                                    <a href="#/listuser">Người dùng</a>
+                                    <a href="#/items"><i class="fa fa-angle-double-right"></i>{{lang.menu.teacher.mark}}</a>
                                 </li>
                             </ul>
                         </li>
-                        <li ng-show="masterUserRole==1">
-                            <a href="#/report">
-                                <i class="fa fa-pie-chart" aria-hidden="true"></i> Thống kê
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-graduation-cap fa-fw text-primary"></i>{{lang.menu.student.label}}
+                                <span class="fa arrow"></span>
                             </a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#/items"><i class="fa fa-angle-double-right"></i>{{lang.menu.student.solveTask}}</a>
+                                </li>
+                                <li>
+                                    <a href="#/items"><i class="fa fa-angle-double-right"></i>{{lang.menu.student.enterExamOnline}}</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>

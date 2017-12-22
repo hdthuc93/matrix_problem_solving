@@ -1,7 +1,7 @@
-<div class="box-2" ng-controller="itemMatchedListCtrl">
+<div class="box-2" ng-controller="taskListCtrl">
     <div class="row">
         <div class="col-lg-12">
-            <h3 class="page-header">Danh sách vật phẩm trùng khớp</h3>
+            <h3 class="page-header">Danh sách tất cả bài tập</h3>
         </div>
     </div>
     <div class="row">
@@ -28,18 +28,6 @@
                         <i class="fa fa-search"></i> Tìm</button>
                 </div>
             </div>
-            <!-- <div class="col-md-3 col-xs-6">
-                    <div class="form-group">
-                        <label class="control-label">Từ ngày</label>
-                        <input name="fromDate" ng-model="search.fromDate" type="text" class="form-control input-sm">
-                    </div>
-                </div> -->
-            <div class="col-md-3 col-xs-6">
-                <!-- <div class="form-group">
-                        <label class="control-label">Đến ngày</label>
-                        <input name="toDate" ng-model="search.toDate" type="text" class="form-control input-sm">
-                    </div>                 -->
-            </div>
         </div>
     </div>
     <div class="row">
@@ -51,8 +39,8 @@
                 </div>
             </div> -->
             <div class="form-group">
-                <div id="itemList" ui-grid-selection ui-grid-resize-columns ui-grid="itemList" class="grid">
-                    <span ng-show="itemList.data.length==0" class="grid-status">Không có dữ liệu</span>
+                <div id="taskList" ui-grid-selection ui-grid-resize-columns ui-grid="taskList" class="grid">
+                    <span ng-show="taskList.data.length==0" class="grid-status">Không có dữ liệu</span>
                 </div>
             </div>
         </div>

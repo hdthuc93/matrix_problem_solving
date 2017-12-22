@@ -475,3 +475,18 @@ outline: none;
     border-color: lightgray;
     background-color: #fdffe8;
 }
+
+/* Icon Language - START */
+.icon-lang:hover img{
+    filter: grayscale(0%)!important;
+    -webkit-filter: grayscale(0%)!important;
+    opacity: 1!important;
+}
+
+.icon-lang.not-apply img{
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%); 
+    opacity: 0.5;
+}
+
+/* Icon Language - END */

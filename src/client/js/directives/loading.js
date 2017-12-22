@@ -1,4 +1,4 @@
-var app = angular.module("findLostObject");
+var app = angular.module("matrixSolving");
 app.directive('myLoading', ['$http', myLoading]);
 function myLoading($http) {
     var directive = {

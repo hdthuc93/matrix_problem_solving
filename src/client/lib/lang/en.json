@@ -1,0 +1,29 @@
+{
+    "lang": "en",
+    "label": {
+        "mainTitle": "Matrix Solving System",
+        "logout": "Logout",
+        "changeLangVi": "Change language to Vietnamese",
+        "changeLangEn": "Change language to English"
+    },
+    "menu": {
+        "info": "Info",
+        "taskList": "Task list",
+        "admin": {
+            "label": "Administration",
+            "openExamOnline": "Open examination online",
+            "changeReg": "Change Regulation"
+        },
+        "teacher": {
+            "label": "Teacher",
+            "createTask": "Create task",
+            "mark": "Mark taskes"
+        },
+        "student": {
+            "label": "Student",
+            "solveTask": "Solve matrix",
+            "enterExamOnline": "Enter online examination"
+        }
+    },
+    "msg": {}
+}
