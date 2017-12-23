@@ -1,9 +1,9 @@
 import Problem from '../models/problem';
-import masterDAO from './masterDAO';
+import MasterDAO from './masterDAO';
 
-class ProblemDAO {
+class ProblemDAO extends MasterDAO {
     constructor() {
-        this.properties = [
+        let properties = [
             'id',
             'content',
             'is_public',
@@ -13,25 +13,7 @@ class ProblemDAO {
             'event_id',
             'constant_id'
         ];
-    }
-
-    insert(obj) {
-        obj.content = JSON.stringify(obj.content);
-        return masterDAO.getAll(Problem, this.properties);
-    }
-
-    update(obj) {
-        if(obj.content)
-            obj.content = JSON.stringify(obj.content);
-        return masterDAO.update(obj, Problem, obj.id);
-    }
-
-    getAll() {
-        return masterDAO.getAll(Problem, this.properties);
-    }
-
-    getById(problem_id) {
-        return masterDAO.getById(problem_id, Problem, this.properties);
+        super(Problem, properties);
     }
 }
 

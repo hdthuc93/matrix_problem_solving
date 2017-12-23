@@ -12,10 +12,6 @@ const Problem = sequelize.define('problem', {
     type: Sequelize.STRING(1000),
     allowNull: false
   },
-  level: {
-    type: Sequelize.INTEGER(2),
-    allowNull: false
-  },
   is_public: {
     type: Sequelize.BOOLEAN,
     allowNull: false,
