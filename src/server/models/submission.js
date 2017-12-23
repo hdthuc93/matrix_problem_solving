@@ -1,5 +1,7 @@
 /* jshint indent: 2 */
 import { sequelize, Sequelize } from './index-model';
+import Problem from './problem';
+import User from './user';
 
 const Submission = sequelize.define('submission', {
   id: {
@@ -23,22 +25,20 @@ const Submission = sequelize.define('submission', {
   },
   user_id: {
     type: Sequelize.INTEGER(8),
-    allowNull: false,
-    references: {
-      model: 'user',
-      key: 'id'
-    }
+    allowNull: false
   },
   problem_id: {
     type: Sequelize.INTEGER(8),
-    allowNull: false,
-    references: {
-      model: 'problem',
-      key: 'id'
-    }
+    allowNull: false
   }
 }, {
   tableName: 'submission'
 });
+
+Problem.hasMany(Submission, { foreignKey: 'problem_id', sourceKey: 'id' });
+Submission.belongsTo(Problem, { foreignKey: 'problem_id', targetKey: 'id' });
+
+User.hasMany(Submission, { foreignKey: 'user_id', sourceKey: 'id' });
+Submission.belongsTo(User, { foreignKey: 'user_id', targetKey: 'id' });
 
 export default Submission;
