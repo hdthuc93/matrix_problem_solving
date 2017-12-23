@@ -64,13 +64,25 @@ class ProblemDAO extends MasterDAO {
         let cond = {};
         let lst = [];
         let properties = this.properties;
+        let arr = [{
+            model: Constant,
+            modelName: 'constant',
+            required: true
+        }, {
+            model: ProblemType,
+            modelName: 'problem_type',
+            required: true
+        }];
 
         if(problem_type_id)
             cond.problem_type_id = problem_type_id;
         if(constant_id)
             cond.constant_id = constant_id;
 
-        let res = await Problem.findAll({ where: cond });
+        let res = await Problem.findAll({ 
+            where: cond,
+            include: arr
+        });
 
         for(let i = 0; i < res.length; ++i) {
             let obj = {};
@@ -78,6 +90,10 @@ class ProblemDAO extends MasterDAO {
                 obj[properties[j]] = res[i][properties[j]];
             }
             
+            for(let j = 0; j < arr.length; ++j) {
+                obj[arr[j].modelName] = res[i][arr[j].modelName];
+            }
+
             lst.push(obj);
         }
 
