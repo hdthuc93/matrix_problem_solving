@@ -1,8 +1,8 @@
 import problemDAO from '../DAOs/problemDAO';
 
 async function getAll(req, res) {
-    let problem_type_id = req.params.type === -1 ? null : req.params.type;
-    let constant_id = req.params.const === -1 ? null : req.params.const;
+    let problem_type_id = req.params.type == -1 ? null : req.params.type;
+    let constant_id = req.params.const == -1 ? null : req.params.const;
 
     try {
         let result;
