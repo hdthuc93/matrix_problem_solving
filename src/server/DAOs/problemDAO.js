@@ -59,6 +59,30 @@ class ProblemDAO extends MasterDAO {
         let superRes = await super.getAllExpanded(arr);
         return superRes;
     }
+
+    async getByCondition(problem_type_id, constant_id) {
+        let cond = {};
+        let lst = [];
+        let properties = this.properties;
+
+        if(problem_type_id)
+            cond.problem_type_id = problem_type_id;
+        if(constant_id)
+            cond.constant_id = constant_id;
+
+        let res = await Problem.findAll({ where: cond });
+
+        for(let i = 0; i < res.length; ++i) {
+            let obj = {};
+            for(let j = 0; j < properties.length; ++j) {
+                obj[properties[j]] = res[i][properties[j]];
+            }
+            
+            lst.push(obj);
+        }
+
+        return lst;
+    }
 }
 
 const problemDAO = new ProblemDAO();
