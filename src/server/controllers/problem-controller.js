@@ -2,8 +2,7 @@ import problemDAO from '../DAOs/problemDAO';
 
 async function getAll(req, res) {
     try {
-        let result = await problemDAO.getAll();
-
+        let result = await problemDAO.getAllExpanded();
         for(let i = 0; i < result.length; ++i)
             result[i].content = JSON.parse(result[i].content);
 

@@ -11,6 +11,15 @@ class SolutionDAO extends MasterDAO {
         ];
         super(Solution, properties);
     }
+
+    async getByProblemId(problem_id) {
+        try {
+            let res = await Solution.findOne({ where: { problem_id: problem_id } });
+            return res;
+        } catch(ex) {
+            throw new Error(ex);
+        }
+    }
 }
 
 const solutionDAO = new SolutionDAO();

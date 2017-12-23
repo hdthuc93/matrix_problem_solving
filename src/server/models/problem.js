@@ -1,5 +1,8 @@
 /* jshint indent: 2 */
 import { sequelize, Sequelize } from './index-model';
+import Constant from './constant';
+import ProblemType from './problem_type';
+import Events from './event';
 
 const Problem = sequelize.define('problem', {
   id: {
@@ -29,30 +32,27 @@ const Problem = sequelize.define('problem', {
   },
   problem_type_id: {
     type: Sequelize.INTEGER(2),
-    allowNull: false,
-    references: {
-      model: 'problem_type',
-      key: 'id'
-    }
+    allowNull: false
   },
   event_id: {
     type: Sequelize.INTEGER(4),
-    allowNull: true,
-    references: {
-      model: 'event',
-      key: 'id'
-    }
+    allowNull: true
   },
   constant_id: {
     type: Sequelize.INTEGER(3),
-    allowNull: false,
-    references: {
-      model: 'constants',
-      key: 'id'
-    }
+    allowNull: false
   }
 }, {
   tableName: 'problem'
 });
+
+Constant.hasMany(Problem, { foreignKey: 'constant_id', sourceKey: 'id' });
+Problem.belongsTo(Constant, { foreignKey: 'constant_id', targetKey: 'id' });
+
+ProblemType.hasMany(Problem, { foreignKey: 'problem_type_id', sourceKey: 'id' });
+Problem.belongsTo(ProblemType, { foreignKey: 'problem_type_id', targetKey: 'id' });
+
+Events.hasMany(Problem, { foreignKey: 'event_id', sourceKey: 'id' });
+Problem.belongsTo(Events, { foreignKey: 'event_id', targetKey: 'id' });
 
 export default Problem;

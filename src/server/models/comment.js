@@ -1,5 +1,7 @@
 /* jshint indent: 2 */
 import { sequelize, Sequelize } from './index-model';
+import Problem from './problem';
+import User from './user';
 
 const Comment = sequelize.define('comment', {
   id: {
@@ -19,22 +21,20 @@ const Comment = sequelize.define('comment', {
   },
   problem_id: {
     type: Sequelize.INTEGER(8),
-    allowNull: false,
-    references: {
-      model: 'problem',
-      key: 'id'
-    }
+    allowNull: false
   },
   user_id: {
     type: Sequelize.INTEGER(8),
-    allowNull: false,
-    references: {
-      model: 'user',
-      key: 'id'
-    }
+    allowNull: false
   }
 }, {
     tableName: 'comment'
 });
+
+Problem.hasMany(Comment, { foreignKey: 'problem_id', sourceKey: 'id' });
+Comment.belongsTo(Problem, { foreignKey: 'problem_id', targetKey: 'id' });
+
+User.hasMany(Comment, { foreignKey: 'user_id', sourceKey: 'id' });
+Comment.belongsTo(User, { foreignKey: 'user_id', targetKey: 'id' });
 
 export default Comment;

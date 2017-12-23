@@ -1,8 +1,7 @@
 /* jshint indent: 2 */
 import { sequelize, Sequelize } from './index-model';
 import bcrypt from 'bcrypt';
-
-// let _bcrypt = Promise.all([bcrypt]);
+import UserType from './user_type';
 
 const User = sequelize.define('user', {
   id: {
@@ -34,11 +33,7 @@ const User = sequelize.define('user', {
   },
   user_type_id: {
     type: Sequelize.INTEGER(4),
-    allowNull: false,
-    references: {
-      model: 'user_type',
-      key: 'id'
-    }
+    allowNull: false
   }
 }, {
   tableName: 'user'
@@ -57,5 +52,9 @@ User.beforeCreate((user, options) => {
       return sequelize.Promise.reject(err);
     });
 });
+
+
+UserType.hasMany(User, { foreignKey: 'user_type_id', sourceKey: 'id' });
+User.belongsTo(UserType, { foreignKey: 'user_type_id', targetKey: 'id' });
 
 export default User;

@@ -1,5 +1,7 @@
 /* jshint indent: 2 */
 import { sequelize, Sequelize } from './index-model';
+import Problem from './problem';
+import Score from './score';
 
 const Solution = sequelize.define('solution', {
   id: {
@@ -14,22 +16,20 @@ const Solution = sequelize.define('solution', {
   },
   problem_id: {
     type: Sequelize.INTEGER(8),
-    allowNull: false,
-    references: {
-      model: 'problem',
-      key: 'id'
-    }
+    allowNull: false
   },
   score_id: {
     type: Sequelize.INTEGER(4),
-    allowNull: false,
-    references: {
-      model: 'score',
-      key: 'id'
-    }
+    allowNull: false
   }
 }, {
   tableName: 'solution'
 });
+
+Problem.hasMany(Solution, { foreignKey: 'problem_id', sourceKey: 'id' });
+Solution.belongsTo(Problem, { foreignKey: 'problem_id', targetKey: 'id' });
+
+Score.hasMany(Solution, { foreignKey: 'score_id', sourceKey: 'id' });
+Solution.belongsTo(Score, { foreignKey: 'score_id', targetKey: 'id' });
 
 export default Solution;
