@@ -1,11 +1,21 @@
 import problemDAO from '../DAOs/problemDAO';
 
 async function getAll(req, res) {
+    let problem_type_id = req.params.type === -1 ? null : req.params.type;
+    let constant_id = req.params.const === -1 ? null : req.params.const;
+
     try {
-        let result = await problemDAO.getAllExpanded();
+        let result;
+        if(problem_type_id || constant_id)
+            result = await problemDAO.getByCondition(problem_type_id, constant_id);
+        else
+            result = await problemDAO.getAllExpanded();
+
         for(let i = 0; i < result.length; ++i)
             result[i].content = JSON.parse(result[i].content);
 
+        result.sort((a, b) => { return a.id > b.id });
+        
         return res.status(200).json({
             msg: "Get all problem type(s) successfully",
             success: true,
