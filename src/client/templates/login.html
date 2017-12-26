@@ -8,13 +8,13 @@
         </div>
         <form ng-show="!isRegister" role="form" id="login-form" name="loginForm">
             <div class="box-input">
-                <input class="box-control" name="email" ng-model="email" autofocus ng-class="{
+                <input class="box-control" name="email" required ng-model="email" autofocus ng-class="{
                         'input-error': loginForm.email.$invalid &&  loginForm.email.$touched }"
                     required>
                 <label class="box-label">{{lang.login.email}}</label>
             </div>
             <div class="box-input">
-                <input class="box-control" name="password" type="password" ng-model="password" maxlength="30" ng-class="{
+                <input class="box-control" name="password" required type="password" ng-model="password" maxlength="30" ng-class="{
                         'input-error': loginForm.password.$invalid && loginForm.password.$touched }"
                     required>
                 <label class="box-label">{{lang.login.password}}</label>
@@ -26,17 +26,21 @@
         </form>
         <form ng-show="isRegister" role="form" id="register-form" name="registerForm">
             <div class="box-input">
-                <input class="box-control" name="lastName" ng-model="item.last_name" autofocus ng-class="{
-                            'input-error': registerForm.lastName.$invalid && registerForm.lastName.$touched }" title="Họ tên là bắt buộc"
+                <input class="box-control" name="fullName" ng-model="item.real_name" autofocus ng-class="{
+                            'input-error': registerForm.fullName.$invalid && registerForm.fullName.$touched }" title="Họ tên là bắt buộc"
                     required>
-                <label class="box-label">{{lang.register.lastName}}</label>
+                <label class="box-label">{{lang.register.fullName}}</label>
             </div>
             <div class="box-input">
-                <input class="box-control" name="firstName" ng-model="item.first_name" ng-class="{
-                            'input-error': registerForm.firstName.$invalid && registerForm.firstName.$touched }" title="Họ tên là bắt buộc"
-                    required>
-                <label class="box-label">{{lang.register.firstName}}</label>
+                <input class="box-control" name="phoneNumber" autofocus ng-model="item.mobile_number">
+                <label class="box-label">{{lang.register.phoneNumber}}</label>
             </div>
+            <div class="box-input">
+                    <input class="box-control" name="birthday" ng-model="item.date_of_birth" autofocus ng-class="{
+                               'input-error': registerForm.birthday.$invalid && registerForm.birthday.$touched }" title="Ngày sinh là bắt buộc"
+                        required>
+                    <label class="box-label">{{lang.register.birthday}}</label>
+                </div>
             <div class="box-input">
                 <input class="box-control" ng-pattern="emailPattern" name="email" ng-model="item.email" autofocus ng-class="{
                         'input-error': registerForm.email.$invalid && registerForm.email.$touched }" title="Địa chỉ Email là bắt buộc"

@@ -41,9 +41,7 @@
         }
     },
     "login":{
-        "loginFail":"Đăng nhập thất bại",
-        "registerFail":"Đăng ký thất bại",
-        "registerSuccess":"Đăng ký thành công",
+        "loginFail":"Đăng nhập thất bại. Sai tài khoản hoặc mật khẩu",
         "email":"Nhập địa chỉ Email",
         "password":"Nhập mật khẩu",
         "register":"Học sinh đăng ký"
@@ -51,10 +49,15 @@
     "register":{
         "firstName":"Tên",
         "lastName":"Họ",
+        "fullName":"Tên đầy đủ",
+        "phoneNumber":"Số điện thoại",
+        "birthday":"Ngày sinh (dd/mm/yyyy)",
         "email":"Địa chỉ Email",
         "password":"Mật khẩu",
         "rePassword":"Nhập lại mật khẩu",
-        "backToLogin":"Quay lại đăng nhập"
+        "backToLogin":"Quay lại đăng nhập",
+        "registerFail":"Đăng ký thất bại.",
+        "registerSuccess":"Đăng ký thành công"
     },
     "task":{
         "create":{

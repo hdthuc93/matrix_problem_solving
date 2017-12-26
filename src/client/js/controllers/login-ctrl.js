@@ -19,8 +19,9 @@ function loginCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $location,
   init();
 
   $scope.login = function () {
-    if ($scope.loginForm.$invalid) {
-      return;
+    if ($scope.loginForm.$error.required && $scope.loginForm.$error.required.length > 0) {
+      $scope.loginForm[$scope.loginForm.$error.required[0].$name].$touched = true;
+      return false;
     }
     var body = {
       "email": $scope.email || null,
@@ -71,10 +72,10 @@ function loginCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $location,
     }
 
     let param = angular.copy($scope.item);
-    param.user_type = 0;
+    param.user_type_id = 3;
     
-    $http.post("api/user", param).then(function (response) {
-      helper.popup.info({ title: "Thông báo", message: response.data.message, close: function () { return; } });
+    $http.post("api/users/register", param).then(function (response) {
+      helper.popup.info({ title: $scope.lang.label.info, message: response.data.message, close: function () { return; } });
       if (response.data.success) {
         init();
       };
