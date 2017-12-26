@@ -7,9 +7,9 @@ var app = angular.module("matrixSolving", [
     'ui.grid.resizeColumns',
     'ui.grid.edit',
     'ui.grid.rowEdit',
-    'ui.grid.cellNav','ui.grid.pinning',
+    'ui.grid.cellNav', 'ui.grid.pinning',
     'mod.helper',
-    'ngFileUpload','ngSanitize']);
+    'ngFileUpload', 'ngSanitize']);
 module.factory('Auth', ['$cookieStore', '$rootScope', function ($cookieStore, $rootScope) {
     var user;
     return {
@@ -18,10 +18,18 @@ module.factory('Auth', ['$cookieStore', '$rootScope', function ($cookieStore, $r
         },
         isLoggedIn: function () {
             if ($cookieStore.get('userdata')) {
-                if ($cookieStore.get('userdata')) {
-                    $rootScope.masterToken = $cookieStore.get('userdata').token;
-                    $rootScope.masterUserRole = $cookieStore.get('userdata').user_type;
-                    return $cookieStore.get('userdata').loggedIn;
+                var data = $cookieStore.get('userdata');
+                var expireDate = new Date(data.expire);
+                var currentDate = new Date();
+                if(expireDate<currentDate){
+                    return false;
+                }
+                if(data.loggedIn){
+                    $rootScope.userData = angular.copy(data);
+                    return true;
+                }else{
+                    return false;
+                    $rootScope.userData = null;
                 }
                 return false;
             } else {
@@ -31,15 +39,13 @@ module.factory('Auth', ['$cookieStore', '$rootScope', function ($cookieStore, $r
     }
 }]).run(['$rootScope', '$location', 'Auth', '$http', function ($rootScope, $location, Auth, $http) {
     $rootScope.$on('$locationChangeStart', function (event) {
-        // if (!Auth.isLoggedIn()) {
-        //     $location.path('/login');
-        //     $rootScope.isLoggedIn = false;
-        // }
-        // else {
-        //     $rootScope.masterUserName = Auth.getUser().name || "Người dùng";
-        //     $rootScope.user_id = Auth.getUser().user_id || null;
-        //     $rootScope.isLoggedIn = true;
-        // }
+        if (!Auth.isLoggedIn()) {
+            $location.path('/login');
+            $rootScope.isLoggedIn = false;
+        }
+        else {
+            $rootScope.userData = Auth.getUser();
+        }
     });
 }]);
 

@@ -48,6 +48,7 @@ function login(req, res) {
             if(isMatch) {
                 jwt.sign({ username: user.email, user_type: user.user_type_id }, config.secretKey, 
                         { algorithm: 'HS256', expiresIn: 60 * 60 * 24 * 7 }, (err, token) => {
+                            console.log(config.secretKey)
                     if(err) {
                         return res.status(500).json({
                             success: false,

@@ -17,7 +17,9 @@
         "register":"Đăng ký",
         "login":"Đăng nhập vào hệ thống",
         "search":"Tìm",
-        "popupInfo":"Thông báo"
+        "popupInfo":"Thông báo",
+        "errorTitle":"Lỗi",
+        "errorMessage":"Lỗi hệ thống"
     },
     "menu": {
         "home": "Trang chủ",
@@ -39,6 +41,9 @@
         }
     },
     "login":{
+        "loginFail":"Đăng nhập thất bại",
+        "registerFail":"Đăng ký thất bại",
+        "registerSuccess":"Đăng ký thành công",
         "email":"Nhập địa chỉ Email",
         "password":"Nhập mật khẩu",
         "register":"Học sinh đăng ký"
