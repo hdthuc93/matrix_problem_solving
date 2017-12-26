@@ -5,6 +5,12 @@
         </div>
     </div>
     <div class="row">
-        
+        <div class="col-xs-12">
+            <div class="form-group">
+                <div id="taskList" ui-grid-selection ui-grid-resize-columns ui-grid="taskList" class="grid">
+                    <span ng-show="taskList.data.length==0" class="grid-status">Không có dữ liệu</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -2,7 +2,7 @@ var module = angular.module('mod.helper', ['ui.bootstrap']);
 var topTemplate =
     '<div class="modal-header"><h4 class="modal-title" ng-bind="Header"></h4></div>' +
     '<div class="modal-body">' +
-    '<h5 class="modal-body-content"><span ng-bind="Message"></span></h5>' +
+    '<h5 class="modal-body-content"><span ng-bind-html="Message"></span></h5>' +
     '</div>';
 
 var modalInstance = null;

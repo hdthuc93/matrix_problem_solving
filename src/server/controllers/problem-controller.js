@@ -14,7 +14,9 @@ async function getAll(req, res) {
         for(let i = 0; i < result.length; ++i)
             result[i].content = JSON.parse(result[i].content);
 
-        result.sort(function(a, b) { return a.id < b.id });
+        result.sort(function(a, b) { return parseInt(a.id) < parseInt(b.id) });
+
+        // console.log(result)
         
         return res.status(200).json({
             msg: "Get all problem type(s) successfully",

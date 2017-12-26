@@ -5,6 +5,38 @@
         </div>
     </div>
     <div class="row">
-        
+        <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="form-group">
+                <label class="control-label">{{lang.task.create.taskType}} *</label>
+                <select ng-model="datatSearch.taskType" name="taskType" required class="form-control input-sm" ng-class="{'has-error': taskInfoForm.taskType.$touched && taskInfoForm.taskType.$invalid}">
+                    <option value="" ng-selected="true">{{lang.label.selectAll}}</option>
+                    <option value="{{type.type_index}}" ng-repeat="type in taskTypeList">{{type.type_name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="form-group">
+                <label class="control-label">{{lang.task.create.hardLevel}} *</label>
+                <select ng-model="datatSearch.hardLevel" name="hardLv" ng-change="changeLevel()" required class="form-control input-sm" ng-class="{'has-error': taskInfoForm.hardLv.$touched && taskInfoForm.hardLv.$invalid}">
+                    <option value="" ng-selected="true">{{lang.label.selectAll}}</option>
+                    <option value="{{lv}}" ng-repeat="lv in hardLevelList">{{lv.level==1?lang.task.create.level1:(lv.level==2?lang.task.create.level2:lang.task.create.level3)}}</option>
+                </select>
+            </div>
+
+            <div class="form-group text-right">
+                <button type="button" class="btn btn-primary btn-xs" ng-click="search()">
+                    <i class="fa fa-search"></i> {{lang.label.search}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <div id="taskList" ui-grid-selection ui-grid-resize-columns ui-grid-pinning ui-grid="taskList" class="grid">
+                    <span ng-show="taskList.data.length==0" class="grid-status">Không có dữ liệu</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

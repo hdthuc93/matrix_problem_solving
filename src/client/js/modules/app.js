@@ -7,9 +7,9 @@ var app = angular.module("matrixSolving", [
     'ui.grid.resizeColumns',
     'ui.grid.edit',
     'ui.grid.rowEdit',
-    'ui.grid.cellNav',
+    'ui.grid.cellNav','ui.grid.pinning',
     'mod.helper',
-    'ngFileUpload']);
+    'ngFileUpload','ngSanitize']);
 module.factory('Auth', ['$cookieStore', '$rootScope', function ($cookieStore, $rootScope) {
     var user;
     return {

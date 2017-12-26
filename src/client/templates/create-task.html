@@ -103,7 +103,7 @@
             </div>
             <div id="matrix-area" class="form-group">
                 <!-- MATRIX CONG TRU -->
-                <div ng-show="data.taskType == 1||data.taskType == 2" class="row">
+                <div id="type1type2" ng-show="data.taskType == 1||data.taskType == 2" class="row">
                     <!-- MATRIX 1 -->
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <table id="matrix-1">
@@ -134,7 +134,7 @@
                 </div>
 
                 <!-- MATRIX NHAN -->
-                <div ng-show="data.taskType == 3" class="row">
+                <div id="type3" ng-show="data.taskType == 3" class="row">
                     <!-- MATRIX 1 -->
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <table id="matrix-1">
@@ -165,7 +165,7 @@
                 </div>
 
                 <!-- MATRIX DINH THUC -->
-                <div ng-show="data.taskType == 4" class="row">
+                <div id="type4" ng-show="data.taskType == 4" class="row">
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <table id="matrix-1">
                             <tr ng-repeat="row in getNumber(data.matrixRowCol) track by $index" ng-init="rowIndex = $index">
@@ -179,7 +179,7 @@
                 </div>
 
                 <!-- MATRIX KRAMER -->
-                <div ng-show="data.taskType == 5" class="row">
+                <div id="type5" ng-show="data.taskType == 5" class="row">
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <table id="matrix-1">
                             <tr ng-repeat="row in getNumber(data.matrixRowCol) track by $index" ng-init="rowIndex = $index">
