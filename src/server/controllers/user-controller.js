@@ -58,8 +58,11 @@ function login(req, res) {
                     return res.status(200).json({
                         success: true,
                         message: "Login successfully",
-                        name: user.real_name,
-                        token: token
+                        data: {
+                            name: user.real_name,
+                            role: user.user_type_id,
+                            token: token
+                        }
                     });
                 })
             } else {
