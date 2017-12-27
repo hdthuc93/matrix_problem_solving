@@ -24,7 +24,7 @@ async function insert(req, res) {
 
 async function getById(req, res) {
     try {
-        let result = await solutionDAO.getById(req.params.id);
+        let result = await solutionDAO.getByProblemId(req.params.id);
 
         if(result && result.content)
             result.content = JSON.parse(result.content);

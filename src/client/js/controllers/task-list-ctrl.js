@@ -238,7 +238,7 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
             content = "<table align='center' width='100%'><tr>";
             var equationVariables = ['x', 'y', 'z', 't', 'u', 'v', 'k', 'l', 'm', 'xx', 'yy', 'zz', 'tt', 'uu', 'vv', 'kk', 'll', 'mm'];
             for (var i = 0; i < data.content[0].length; i++) {
-              content += ("<td>d" + (i < data.content[0].length - 1 ? (i + 1) : "") + " = " + data.content[0][i] + "</td>");
+              content += ("<td" + (i < data.content[0].length - 1 ? "" : " class='header'") + ">d" + (i < data.content[0].length - 1 ? (i + 1) : "") + " = " + data.content[0][i] + "</td>");
             }
             content += "</tr><tr>"
             for (var i = 0; i < data.content[1].length; i++) {
