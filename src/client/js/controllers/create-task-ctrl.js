@@ -4,7 +4,7 @@ app.controller('createTaskCtrl', ['$scope', '$cookieStore', '$http', '$rootScope
 function createTaskCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $location, helper) {
 
   $scope.cellLimit = /^(0|9)\d{2}$/;
-  $scope.equationVariables = ['x', 'y', 'z', 't', 'u', 'v', 'k', 'l', 'm']
+  $scope.equationVariables = ['x', 'y', 'z', 't', 'u', 'v', 'k', 'l', 'm', 'xx', 'yy', 'zz', 'tt', 'uu', 'vv', 'kk', 'll', 'mm'];
 
   $scope.getTypeList = function () {
     $http.get("/api/problems/type")
@@ -27,25 +27,6 @@ function createTaskCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $loca
       matrixRow: 0,
       matrixCol: 0,
     }
-    // $scope.taskTypeList = [{
-    //   id: 1, type_name: "Cộng ma trận"
-    // }, {
-    //   id: 2, type_name: "Trừ ma trận"
-    // }, {
-    //   id: 3, type_name: "Nhân ma trận"
-    // }, {
-    //   id: 4, type_name: "Tính định thức"
-    // }, {
-    //   id: 5, type_name: "Giải hệ Phương trình Kramer"
-    // }]
-
-    // $scope.hardLevelList = [{
-    //   id: 1, lv_name: "Dễ"
-    // }, {
-    //   id: 2, lv_name: "Vừa"
-    // }, {
-    //   id: 3, lv_name: "Khó"
-    // }]
     $scope.getTypeList();
     $scope.getHardLevelList();
   }
@@ -63,11 +44,60 @@ function createTaskCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $loca
       $scope.taskInfoForm[$scope.taskInfoForm.$error.required[0].$name].$touched = true;
       return false;
     }
-    // var matrixArea = angular.element('#matrix-area');
-    // if ($scope.data.taskType == 1) {
-    //   matrixArea.html('<option value="{{lv.id}}" ng-repeat="lv in hardLevelList">{{lv.lv_name}}</option>');
-    // }
 
+    var content = [];
+
+    if ($scope.data.taskType == 1 || $scope.data.taskType == 2) {
+      content.push(getMatrixData("#type1type2 #matrix-1"));
+      content.push(getMatrixData("#type1type2 #matrix-2"));
+    }
+
+    if ($scope.data.taskType == 3) {
+      content.push(getMatrixData("#type3 #matrix-1"));
+      content.push(getMatrixData("#type3 #matrix-2"));
+    }
+
+    if ($scope.data.taskType == 4) {
+      content.push(getMatrixData("#type4 #matrix-1"));
+    }
+
+    if ($scope.data.taskType == 5) {
+      content.push(getMatrixData("#type5 #matrix-1"));
+    }
+
+    if (content.length) {
+      var data = {
+        content: content,
+        problem_type_id: angular.copy(parseInt($scope.data.taskType)),
+        constant_id: angular.copy(parseInt(angular.fromJson($scope.data.hardLevel).id))
+      }
+
+      $http.post("/api/problems", data)
+        .then(function (response) {
+          var msg = response.data.success ? $scope.lang.task.create.save.success : $scope.lang.task.create.save.fail;
+          helper.popup.info({ title: $scope.lang.label.popupInfo, message: msg, close: function () { return; } })
+          if (response.data.success) {
+            init();
+            $scope.taskInfoForm.$setPristine();
+            $scope.taskInfoForm.$setUntouched();
+            $scope.taskDetailForm.$setPristine();
+            $scope.taskDetailForm.$setUntouched();
+          }
+        });
+    }
+  }
+
+  function getMatrixData(url) {
+    var matrixRows = angular.element("#matrix-area " + url + " tr");
+    var matrix = [];
+    for (row = 0; row < matrixRows.length; row++) {
+      var rowData = [];
+      for (var col = 0; col < matrixRows[row]["cells"].length; col++) {
+        rowData.push(parseInt(matrixRows[row]["cells"][col]["lastElementChild"]["value"]));
+      }
+      matrix.push(rowData);
+    }
+    return matrix;
   }
 
   $scope.changeLevel = function () {

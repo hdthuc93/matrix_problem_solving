@@ -8,13 +8,18 @@
         "changeLangVi": "Đổi sang tiếng Việt",
         "changeLangEn": "Đổi sang tiếng Anh",
 		"selectOne":"Chọn một",
+		"selectAll":"Chọn tất cả",
 		"addition":"Cộng với",
 		"subtraction":"Trừ cho",
 		"multiplication":"Nhân với",
 		"save":"Lưu",
         "saveAndGiveAns":"Lưu & Nhập đáp số",
         "register":"Đăng ký",
-        "login":"Đăng nhập vào hệ thống"
+        "login":"Đăng nhập vào hệ thống",
+        "search":"Tìm",
+        "popupInfo":"Thông báo",
+        "errorTitle":"Lỗi",
+        "errorMessage":"Lỗi hệ thống"
     },
     "menu": {
         "home": "Trang chủ",
@@ -36,6 +41,7 @@
         }
     },
     "login":{
+        "loginFail":"Đăng nhập thất bại. Sai tài khoản hoặc mật khẩu",
         "email":"Nhập địa chỉ Email",
         "password":"Nhập mật khẩu",
         "register":"Học sinh đăng ký"
@@ -43,10 +49,15 @@
     "register":{
         "firstName":"Tên",
         "lastName":"Họ",
+        "fullName":"Tên đầy đủ",
+        "phoneNumber":"Số điện thoại",
+        "birthday":"Ngày sinh (dd/mm/yyyy)",
         "email":"Địa chỉ Email",
         "password":"Mật khẩu",
         "rePassword":"Nhập lại mật khẩu",
-        "backToLogin":"Quay lại đăng nhập"
+        "backToLogin":"Quay lại đăng nhập",
+        "registerFail":"Đăng ký thất bại.",
+        "registerSuccess":"Đăng ký thành công"
     },
     "task":{
         "create":{
@@ -60,13 +71,28 @@
             "row":"Chọn số dòng",
             "col":"Chọn số cột",
             "matrixSquare":"Chọn ma trận vuông cấp",
-            "fillTask":"Nhập nội dung đề bài"
+            "fillTask":"Nhập nội dung đề bài",
+            "save":{
+                "success":"Tạo ma trận thành công",
+                "fail":"Tạo ma trận thất bại. Vui lòng kiểm tra lại."
+            }
         },
         "mark":{
             "title":"Chấm điểm"
         },
         "solve":{
             "title":"Giải bài tập ma trận"
+        },
+        "list":{
+            "grid":{
+                "no":"STT",
+                "matrix1":"Ma trận 1",
+                "matrix2":"Ma trận 2",
+                "type":"Loại bài tập",
+                "level":"Độ khó",
+                "action":"Chức năng"
+            },
+            "matrixInfo":"Thông tin ma trận"
         }
     },
     "exam":{
@@ -78,7 +104,20 @@
         }
     },
     "regulation":{
-        "title":"Quy định"
+        "title":"Quy định",
+        "hardLevel":{
+            "level1":"Độ khó: Dễ",
+            "level2":"Độ khó: Vừa",
+            "level3":"Độ khó: Khó",
+            "maxCol":"Cột tối đa",
+            "maxRow":"Dòng tối đa"
+        },
+        "point":{
+            "point":"Số điểm",
+            "right":"Đúng hoàn toàn",
+            "halfRight":"Đúng một phần",
+            "wrong":"Sai hoàn toàn"
+        }
     },
     "msg": {}
 }

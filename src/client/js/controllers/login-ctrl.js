@@ -19,40 +19,37 @@ function loginCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $location,
   init();
 
   $scope.login = function () {
-    if ($scope.loginForm.$invalid) {
-      return;
+    if ($scope.loginForm.$error.required && $scope.loginForm.$error.required.length > 0) {
+      $scope.loginForm[$scope.loginForm.$error.required[0].$name].$touched = true;
+      return false;
     }
     var body = {
-      "Email": $scope.email || null,
-      "Pass": $scope.password || null
+      "email": $scope.email || null,
+      "password": $scope.password || null
     }
-    $http.post('/api/logins', body).then(function successCallBack(res) {
+    $http.post('/api/users/login', body).then(function successCallBack(res) {
       if (res.data.success) {
-        var data = res.data;
+        var data = res.data.data;
         var expireDate = new Date();
-        expireDate.setDate(expireDate.getDate() + 732);
+        expireDate.setDate(expireDate.getDate() + 7);
         // Setting a cookie
-        $rootScope.masterToken = data.token;
+        $rootScope.userData = data;;
         $cookieStore.put(
           'userdata',
           {
             loggedIn: true,
             name: data.name,
-            user_id: data.user_id,
-            user_type: data.user_type,
-            token: data.token
-          },
-          {
-            'expires': expireDate
+            role: data.role,
+            token: data.token,
+            expire: expireDate
           });
         $location.path('/');
       } else {
-        console.log('fail');
-        helper.popup.info({ title: "Đăng nhập thất bại", message: res.data.msg, close: function () { return; } });
+        helper.popup.info({ title: $scope.lang.label.popupInfo, message: $scope.lang.login.loginFail , close: function () { return; } });
       }
     }, function errorCallback() {
       helper.popup.info({
-        title: "Lỗi", message: "Xảy ra lỗi trong quá trình thực hiện, vui lòng thử lại.", close: function () {
+        title: $scope.lang.label.errorTitle, message: $scope.lang.label.errorMessage, close: function () {
           location.reload();
           return;
         }
@@ -75,10 +72,10 @@ function loginCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $location,
     }
 
     let param = angular.copy($scope.item);
-    param.user_type = 0;
+    param.user_type_id = 3;
     
-    $http.post("api/user", param).then(function (response) {
-      helper.popup.info({ title: "Thông báo", message: response.data.message, close: function () { return; } });
+    $http.post("api/users/register", param).then(function (response) {
+      helper.popup.info({ title: $scope.lang.label.info, message: response.data.message, close: function () { return; } });
       if (response.data.success) {
         init();
       };

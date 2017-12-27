@@ -66,7 +66,7 @@
                     <!-- /.dropdown -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
-                            <i class="fa fa-user fa-fw"></i>{{masterUserName}}
+                            <i class="fa fa-user fa-fw"></i>{{userData.name}}
                             <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
@@ -91,7 +91,7 @@
             <!-- /.navbar-top-links -->
 
             <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
+                <div class="sidebar-nav navbar-collapse collapse" aria-expanded="false">
                     <ul class="nav" id="side-menu">
                         <!-- <li class="sidebar-search"> -->
                         <!-- <div class="input-group custom-search-form">
@@ -112,23 +112,23 @@
                             <a href="#/task">
                                 <i class="fa fa-list fa-fw"></i>{{lang.menu.taskList}}</a>
                         </li>
-                        <li>
-                            <a href="#">
+                        <li ng-show="userData.role == 1">
+                            <a href="javascript:void(0)">
                                 <i class="fa fa-graduation-cap fa-fw text-danger"></i>{{lang.menu.admin.label}}
                                 <span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
-                                <li>
+                                <!-- <li>
                                     <a href="#/create-exam"><i class="fa fa-angle-double-right"></i>{{lang.menu.admin.openExamOnline}}</a>
-                                </li>
+                                </li> -->
                                 <li>
                                     <a href="#/regulation"><i class="fa fa-angle-double-right"></i>{{lang.menu.admin.changeReg}}</a>
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-graduation-cap fa-fw text-success"></i>{{lang.menu.teacher.label}}
+                        <li ng-show="userData.role !=3">
+                            <a href="javascript:void(0)">
+                                        <i class="fa fa-graduation-cap fa-fw text-success"></i>{{lang.menu.teacher.label}}
                                 <span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
@@ -140,20 +140,17 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-graduation-cap fa-fw text-primary"></i>{{lang.menu.student.label}}
+                        <!-- <li ng-hide="userData.role != 3">
+                            <a href="javascript:void(0)">
+                                        <i class="fa fa-graduation-cap fa-fw text-primary"></i>{{lang.menu.student.label}}
                                 <span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="#/solve-task"><i class="fa fa-angle-double-right"></i>{{lang.menu.student.solveTask}}</a>
                                 </li>
-                                <li>
-                                    <a href="#/enter-exam"><i class="fa fa-angle-double-right"></i>{{lang.menu.student.enterExamOnline}}</a>
-                                </li>
                             </ul>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -183,6 +180,7 @@
 
     <!-- ANGULAR JS -->
     <script type="text/javascript" src="angular/angular.min.js"></script>
+    <script type="text/javascript" src="angular-sanitize/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script type="text/javascript" src="angular-cookies/angular-cookies.min.js"></script>
     <script type="text/javascript" src="angular-ui-router/release/angular-ui-router.min.js"></script>

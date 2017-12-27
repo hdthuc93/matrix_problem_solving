@@ -344,12 +344,13 @@ i.fa.fa-list.fa-fw {
 .box-2>.row:last-child{
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
+    padding-bottom: 15px;
 }
 
 .box-2>.row:nth-child(2) {
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
-    padding-top: 20px;
+    padding-top: 15px;
 }
 
 .box-2 label {
@@ -358,7 +359,7 @@ i.fa.fa-list.fa-fw {
     display: inline-block;
     margin-bottom: 8px;
     font-size: 12px;
-    color: #72777a;
+    color: #36383a;
     letter-spacing: .2px;
 }
 

@@ -5,6 +5,114 @@
         </div>
     </div>
     <div class="row">
-        
+        <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="form-group">
+                <label class="control-label">{{lang.task.create.taskType}} *</label>
+                <select ng-model="datatSearch.taskType" name="taskType" required class="form-control input-sm" ng-class="{'has-error': taskInfoForm.taskType.$touched && taskInfoForm.taskType.$invalid}">
+                    <option value="" ng-selected="true">{{lang.label.selectAll}}</option>
+                    <option value="{{type.type_index}}" ng-repeat="type in taskTypeList">{{type.type_name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="form-group">
+                <label class="control-label">{{lang.task.create.hardLevel}} *</label>
+                <select ng-model="datatSearch.hardLevel" name="hardLv" ng-change="changeLevel()" required class="form-control input-sm" ng-class="{'has-error': taskInfoForm.hardLv.$touched && taskInfoForm.hardLv.$invalid}">
+                    <option value="" ng-selected="true">{{lang.label.selectAll}}</option>
+                    <option value="{{lv}}" ng-repeat="lv in hardLevelList">{{lv.level==1?lang.task.create.level1:(lv.level==2?lang.task.create.level2:lang.task.create.level3)}}</option>
+                </select>
+            </div>
+
+            <div class="form-group text-right">
+                <button type="button" class="btn btn-primary btn-xs" ng-click="search()">
+                    <i class="fa fa-search"></i> {{lang.label.search}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <div id="taskList" ui-grid-selection ui-grid-resize-columns ui-grid-pinning ui-grid="taskList" class="grid">
+                    <span ng-show="taskList.data.length==0" class="grid-status">Không có dữ liệu</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modalSolution" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Nhập đáp án</h4>
+                </div>
+                <div id="solutionArea" class="modal-body">
+                    <div class="row">
+                        <div id="type1type2type3" ng-show="solution.type == 1||solution.type == 2||solution.type == 3" class="col-xs-12">
+                            <div class="form-group">
+                                <table align="center" class="solution">
+                                    <tr ng-repeat="row in getNumber(solution.row) track by $index" ng-init="rowIndex = $index">
+                                        <td ng-repeat="col in getNumber(solution.col) track by $index" ng-init="colIndex = $index">
+                                            <input yr-integer ng-pattern="cellLimit" name="cell{{rowIndex}}{{colIndex}}" type="text" class="form-control input-sm matrix-cell">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="type4" ng-show="solution.type == 4" class="col-xs-12">
+                            <div ng-repeat="matrix in getNumber(solution.rowCol-1) track by $index" ng-init="determinant = $index" class="form-group">
+                                <p class="text-center">Ma trận {{determinant+1}}</p>
+                                <table align="center" class="solution">
+                                    <tr ng-repeat="row in getNumber(solution.rowCol) track by $index" ng-init="rowIndex = $index">
+                                        <td ng-repeat="col in getNumber(solution.rowCol) track by $index" ng-init="colIndex = $index">
+                                            <input yr-integer ng-pattern="cellLimit" name="cell{{rowIndex}}{{colIndex}}" type="text" class="form-control input-sm matrix-cell">
+                                        </td>
+                                    </tr>
+                                </table>
+                                <!-- <hr> -->
+                            </div>
+                            <div class="form-group">
+                                <p class="text-center">Kết quả</p>
+                                <table align="center" class="solution">
+                                    <tr>
+                                        <td>
+                                            <input yr-integer ng-pattern="cellLimit" placeholder="d" name="d" type="text" class="form-control input-sm matrix-cell">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="type5" ng-show="solution.type == 5" class="col-xs-12">
+                            <div class="form-group">
+                                <table align="center" class="solution">
+                                    <tr>
+                                        <td ng-repeat="num in getNumber(solution.variables) track by $index" ng-init="colIndex = $index">
+                                            <input yr-integer ng-pattern="cellLimit" placeholder="d{{colIndex+1}}" name="d{{colIndex+1}}" type="text" class="form-control input-sm matrix-cell">
+                                        </td>
+                                        <td>
+                                            <input yr-integer ng-pattern="cellLimit" placeholder="d" name="d" type="text" class="form-control input-sm matrix-cell">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td ng-repeat="num in getNumber(solution.variables) track by $index" ng-init="colIndex = $index">
+                                            <input yr-integer ng-pattern="cellLimit" placeholder="{{equationVariables[colIndex]}}" name="{{equationVariables[colIndex]}}"
+                                                type="text" class="form-control input-sm matrix-cell">
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-xs" ng-click="saveSolution()">Lưu</button>
+                    <button type="button" class="btn btn-primary btn-xs" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
