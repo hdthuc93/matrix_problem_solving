@@ -158,7 +158,7 @@ button.btn-primary {
     min-width: 70px;
     font-weight: 600;
     text-align: left;
-    padding: 5px 30px;
+    padding: 5px 15px;
     font-size: 12px;
     line-height: 1.5;
     border-radius: 3px;
@@ -500,7 +500,7 @@ outline: none;
     text-align: center;
     padding: 3px 1px!important;
     min-width: 35px;
-    max-width: 70px;
+    max-width: 50px;
 }
 
 td.matrix-cell{
@@ -527,11 +527,12 @@ td.matrix-cell{
     background-color: #d0a736;
 }
 .sidebar ul li a.active {
-    background-color: #d0a736;
+    background-color: transparent;
+    /* background-color: #d0a736;
     font-style: italic;
     text-decoration: underline;
     text-decoration-line: underline;
-    text-decoration-color: #886e28;
+    text-decoration-color: #886e28;  */
 }
 .navbar-default {
     border-color: #d38a2a;
@@ -595,4 +596,9 @@ ol, ul {
 
 td, th {
     padding: 8px;
+}
+
+.header{
+    font-weight: bold;
+    font-size: 130%;
 }

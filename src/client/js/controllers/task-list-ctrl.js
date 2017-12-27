@@ -4,7 +4,7 @@ app.controller('taskListCtrl', ['$scope', '$cookieStore', '$http', '$rootScope',
 function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $location, helper) {
   $scope.cellLimit = /^(0|9)\d{2}$/;
   $scope.equationVariables = ['x', 'y', 'z', 't', 'u', 'v', 'k', 'l', 'm', 'xx', 'yy', 'zz', 'tt', 'uu', 'vv', 'kk', 'll', 'mm'];
-  
+
   $scope.getTypeList = function () {
     $http.get("/api/problems/type")
       .then(function (response) {
@@ -56,10 +56,10 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
         field: 'constant_name', displayName: $scope.lang.task.list.grid.level, minWidth: 60,
         cellTemplate: '<div class="ui-grid-cell-contents" ng-class="{\'bg-success\': row.entity.constant.level == 1, \'bg-warning\': row.entity.constant.level == 2, \'bg-danger\': row.entity.constant.level == 3}">{{row.entity.constant_name}}</div>'
       },
-      {
-        field: 'action', displayName: $scope.lang.task.list.grid.action, minWidth: 100, maxWidth: 120,/* pinnedRight: true,*/
-        cellTemplate: '<div class="ui-grid-cell-contents"><button ng-show="{{!row.entity.is_public}}" type="button" style="padding: 0px 5px;" class="btn btn-default" ng-click="grid.appScope.postSolution(row.entity)"><i class="fa fa-file"></i></button></div>'
-      }
+      // {
+      //   field: 'action', displayName: $scope.lang.task.list.grid.action, minWidth: 100, maxWidth: 120,/* pinnedRight: true,*/
+      //   cellTemplate: '<div class="ui-grid-cell-contents"><button ng-show="{{!row.entity.is_public&&grid.appScope.userData.role != 3}}" type="button" style="padding: 0px 5px;" class="btn btn-default" ng-click="grid.appScope.postSolution(row.entity)"><i class="fa fa-file-text-o"></i></button> <button ng-show="{{row.entity.is_public}}" type="button" style="padding: 0px 5px;" class="btn btn-default" ng-click="grid.appScope.getSolution(row.entity)"><i class="fa fa-file-text"></i></button></div>'
+      // }
     ],
     onRegisterApi: function (gridApi) {
       $scope.gridApi = gridApi;
@@ -93,12 +93,43 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
       });
   }
 
-  $scope.viewMatrix = function (data, type) {
-    $scope.matrixData = data;
-    var content = "<table align='center' width='100%'>";
-    if (type == 5) {
-      var equationVariables = ['x', 'y', 'z', 't', 'u', 'v', 'k', 'l', 'm', 'xx', 'yy', 'zz', 'tt', 'uu', 'vv', 'kk', 'll', 'mm']
+  $scope.viewTask = function (row) {
+    var content = "";
+    var array = [$scope.lang.label.addition, $scope.lang.label.subtraction, $scope.lang.label.multiplication]
+    if (row.problem_type.type_index == 1) {
+      content += "<p class='text-center header'>" + $scope.lang.task.list.taskType.addition + "</p>";
+    }
+    if (row.problem_type.type_index == 2) {
+      content += "<p class='text-center header'>" + $scope.lang.task.list.taskType.subtraction + "</p>";
+    }
+    if (row.problem_type.type_index == 3) {
+      content += "<p class='text-center header'>" + $scope.lang.task.list.taskType.multiplication + "</p>";
+    }
+    if (row.problem_type.type_index == 4) {
+      content += "<p class='text-center header'>" + $scope.lang.task.list.taskType.determinant + "</p>";
+    }
+    if (row.problem_type.type_index == 5) {
+      content += "<p class='text-center header'>" + $scope.lang.task.list.taskType.kramer + "</p>";
+    }
+    if (row.content[0]) {
+      content += renderMatrix(row.content[0], row.problem_type.type_index);
+    }
+    if (row.content[1]) {
+      content += "<p></p><p class='text-center'>" + array[row.problem_type.type_index - 1] + "</p>"
+      content += renderMatrix(row.content[1], row.problem_type.type_index);
+    }
+    helper.popup.info({ title: $scope.lang.task.list.taskInfo, message: content, close: function () { return; } });
+  }
 
+  $scope.viewMatrix = function (data, type) {
+    var content = renderMatrix(data, type);
+    helper.popup.info({ title: $scope.lang.task.list.matrixInfo, message: content, close: function () { return; } })
+  }
+
+  function renderMatrix(data, type) {
+    if (type == 5) {
+      var content = "<table align='center' width='100%'>";
+      var equationVariables = ['x', 'y', 'z', 't', 'u', 'v', 'k', 'l', 'm', 'xx', 'yy', 'zz', 'tt', 'uu', 'vv', 'kk', 'll', 'mm']
       for (var row = 0; row < data.length; row++) {
         content += "<tr><td>";
         for (var col = 0; col < data[row].length; col++) {
@@ -106,7 +137,8 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
         }
         content += "</td></tr>";
       }
-      content += "</table>"
+      content += "</table>";
+      return content;
     } else {
       var content = "<table align='center' class='table-bordered'>";
       for (var row = 0; row < data.length; row++) {
@@ -116,9 +148,9 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
         }
         content += "</tr>";
       }
+      content += "</table>";
+      return content;
     }
-    content += "</table>"
-    helper.popup.info({ title: $scope.lang.task.list.matrixInfo, message: content, close: function () { return; } })
   }
 
   $scope.getNumber = function (num) {
@@ -128,9 +160,9 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
     return [];
   }
 
-  $scope.postSolution = function (row) {
+  $scope.showPostSolution = function (row) {
     $("#modalSolution").modal();
-    console.log("du lieu row", row)
+    angular.element("#solution-area input").val("");
     $scope.solution = {};
     $scope.solution.type = row.problem_type.type_index;
     if ($scope.solution.type == 1 || $scope.solution.type == 2) {/*CONG - TRU*/
@@ -147,15 +179,70 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
     if ($scope.solution.type == 5) {/*KRAMER*/
       $scope.solution.variables = row.content[0].length;
     }
-    console.log(77777, $scope.solution)
-
   }
 
   $scope.saveSolution = function () {
-    $scope.solution = {};
+    var content = [];
+    if ($scope.solution.type == 1 || $scope.solution.type == 2 || $scope.solution.type == 3) {/*CONG - TRU - NHAN*/
+      content = getSolutionData("#type1type2type3 .solution");
+    }
+
+    if ($scope.solution.type == 4) {/*DINH THUC*/
+      var d = angular.element("#solution-area #type4 #mainSolution input").val();
+      var numMatrix = $("#solution-area #type4 .solution").length;
+      for (var i = 0; i < numMatrix; i++) {
+        content.push(getSolutionData("#type4 #solution" + i));
+      }
+      content.push(parseInt(d));
+    }
+
+    if ($scope.solution.type == 5) {/*KRAMER*/
+      content = getSolutionData("#type5 .solution");
+    }
+
+    if (content.length) {
+      var data = {
+        content: content,
+        problem_id: $scope.selectedRow.id,
+        score_id: null
+      }
+      $http.post("/api/solutions", data)
+        .then(function (response) {
+          var msg = response.data.success ? $scope.lang.task.solution.save.success : $scope.lang.task.solution.save.fail;
+          helper.popup.info({ title: $scope.lang.label.popupInfo, message: msg, close: function () { return; } })
+          if (response.data.success) {
+            init();
+          }
+        });
+    }
+  }
+
+  $scope.getSolution = function (row) {
+    $http.get("/api/solutions/" + row.id)
+      .then(function (response) {
+        if (response.data.success && response.data.data) {
+          var data = response.data.data;
+          console.log(777999, data);
+          helper.popup.info({ title: $scope.lang.label.solution, message: "Viết code", close: function () { return; } })
+        } else {
+          helper.popup.info({ title: $scope.lang.label.solution, message: $scope.lang.label.noData, close: function () { return; } })
+        }
+      });
+
+  }
+
+  function getSolutionData(url) {
+    console.log(angular.element("#solution-area " + url + " tr"), "#solution-area " + url + " tr");
+    var matrixRows = angular.element("#solution-area " + url + " tr");
+    var matrix = [];
+    for (row = 0; row < matrixRows.length; row++) {
+      var rowData = [];
+      for (var col = 0; col < matrixRows[row]["cells"].length; col++) {
+        rowData.push(parseInt(matrixRows[row]["cells"][col]["lastElementChild"]["value"]));
+      }
+      matrix.push(rowData);
+    }
+    return matrix;
   }
 
 }
-
-
-
