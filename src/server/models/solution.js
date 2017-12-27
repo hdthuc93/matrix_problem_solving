@@ -20,7 +20,7 @@ const Solution = sequelize.define('solution', {
   },
   score_id: {
     type: Sequelize.INTEGER(4),
-    allowNull: false
+    allowNull: true
   }
 }, {
   tableName: 'solution'
