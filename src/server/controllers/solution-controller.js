@@ -4,7 +4,7 @@ async function insert(req, res) {
     let obj = {
         content: req.body.content,
         problem_id: req.body.problem_id,
-        score_id: req.body.score_id || null
+        score_id: req.body.score_id
     }
 
     obj.content = JSON.stringify(obj.content);
