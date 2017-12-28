@@ -13,7 +13,7 @@ async function insert(req, res) {
         let solveExist = await solutionDAO.getByProblemId(obj.problem_id);
 
         if(solveExist && solveExist.id) {
-            let res = await solutionDAO.update({ content: obj.content }, solveExist.id);    
+            let result = await solutionDAO.update({ content: obj.content }, solveExist.id);    
             return res.status(200).json({
                 msg: "Update solution successfully",
                 success: true
