@@ -26,12 +26,14 @@ async function checkCorrectAns(req, res) {
             }
         } else if(constAndType.problem_type_index === 4) {
             if(inObj.content.length === content.length) {
-                for(let i = 0; i < content.length; ++i) {
+                let i = 0;
+                for(; i < content.length - 1; ++i) {
                     if(!checkCorrectAns(inObj.content[i], content[i])) {
                         flag = false;
                         break;
                     }
                 }
+                if(inObj.content[i] !== content[i]) flag = false;
                 inObj.result = flag;
             }
         } else {
