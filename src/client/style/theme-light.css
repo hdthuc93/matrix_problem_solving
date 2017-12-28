@@ -586,7 +586,7 @@ ol, ul {
     padding: 15px;
 }
 .bordered input{
-    border-color: #93a3a9!important;
+    border-color: #93a3a9;
 }
 
 td, th {

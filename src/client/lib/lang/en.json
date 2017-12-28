@@ -1,28 +1,159 @@
 {
     "lang": "en",
     "label": {
-        "mainTitle": "Matrix Solving System",
-        "logout": "Logout",
-        "changeLangVi": "Change language to Vietnamese",
-        "changeLangEn": "Change language to English"
+        "mainTitle": "Hệ thống giải bài tập ma trận",
+        "matrix": "Ma trận",
+        "minusCol": "Loại bỏ các phần tử trong cột thứ",
+        "minusRow": "dưới phần tử thứ",
+        "solution": "Kết quả",
+        "noData": "Không có dữ liệu",
+        "pageNotFound": "Lỗi không tìm thấy",
+        "pageNotFoundDetail": "Trang bạn truy cập dường như không tồn tại",
+        "logout": "Đăng xuất",
+        "changeLangVi": "Đổi sang tiếng Việt",
+        "changeLangEn": "Đổi sang tiếng Anh",
+        "changeTheme": "Đổi giao diện",
+        "selectOne": "Chọn một",
+        "selectAll": "Chọn tất cả",
+        "addition": "Cộng với",
+        "subtraction": "Trừ cho",
+        "multiplication": "Nhân với",
+        "save": "Lưu",
+        "close": "Đóng",
+        "saveAndGiveAns": "Lưu & Nhập đáp số",
+        "register": "Đăng ký",
+        "login": "Đăng nhập vào hệ thống",
+        "search": "Tìm",
+        "popupInfo": "Thông báo",
+        "errorTitle": "Lỗi",
+        "errorMessage": "Lỗi hệ thống",
+        "viewTask": "Xem bài tập",
+        "postSolution": "Thêm bài giải",
+        "editSolution": "Sửa bài giải",
+        "getSolution": "Xem đáp án",
+        "getResult": "Xem điểm",
+        "solveTask": "Giải bài tập"
     },
     "menu": {
-        "info": "Info",
-        "taskList": "Task list",
+        "home": "Trang chủ",
+        "taskList": "Danh sách bài tập",
         "admin": {
-            "label": "Administration",
-            "openExamOnline": "Open examination online",
-            "changeReg": "Change Regulation"
+            "label": "Dành cho quản trị",
+            "openExamOnline": "Mở cuộc thi Online",
+            "changeReg": "Thay đổi quy định"
         },
         "teacher": {
-            "label": "Teacher",
-            "createTask": "Create task",
-            "mark": "Mark taskes"
+            "label": "Dành cho giáo viên",
+            "createTask": "Soạn bài tập",
+            "mark": "Chấm điểm"
         },
         "student": {
-            "label": "Student",
-            "solveTask": "Solve matrix",
-            "enterExamOnline": "Enter online examination"
+            "label": "Dành cho học sinh",
+            "solveTask": "Giải bài tập",
+            "enterExamOnline": "Thi Online"
+        }
+    },
+    "login": {
+        "loginFail": "Đăng nhập thất bại. Sai tài khoản hoặc mật khẩu",
+        "email": "Nhập địa chỉ Email",
+        "password": "Nhập mật khẩu",
+        "register": "Học sinh đăng ký"
+    },
+    "register": {
+        "firstName": "Tên",
+        "lastName": "Họ",
+        "fullName": "Tên đầy đủ",
+        "phoneNumber": "Số điện thoại",
+        "birthday": "Ngày sinh (dd/mm/yyyy)",
+        "email": "Địa chỉ Email",
+        "password": "Mật khẩu",
+        "rePassword": "Nhập lại mật khẩu",
+        "backToLogin": "Quay lại đăng nhập",
+        "registerFail": "Đăng ký thất bại.",
+        "registerSuccess": "Đăng ký thành công"
+    },
+    "task": {
+        "create": {
+            "title": "Soạn bài tập",
+            "selectInfo": "Chọn thông tin",
+            "taskType": "Chọn loại bài tập",
+            "hardLevel": "Chọn độ khó",
+            "level1": "Dễ",
+            "level2": "Vừa",
+            "level3": "Khó",
+            "row": "Chọn số dòng",
+            "col": "Chọn số cột",
+            "matrixSquare": "Chọn ma trận vuông cấp",
+            "fillTask": "Nhập nội dung đề bài",
+            "save": {
+                "success": "Tạo ma trận thành công",
+                "fail": "Tạo ma trận thất bại. Vui lòng kiểm tra lại."
+            }
+        },
+        "mark": {
+            "title": "Chấm điểm"
+        },
+        "solve": {
+            "title": "Giải bài tập ma trận"
+        },
+        "solution": {
+            "title": "Nhập bài giải ma trận",
+            "save": {
+                "success": "Lưu bài giải thành công",
+                "fail": "Lưu bài giải thất bại. Vui lòng kiểm tra lại."
+            },
+            "update": {
+                "success": "Cập nhật bài giải thành công",
+                "fail": "Cập nhật bài giải thất bại. Vui lòng kiểm tra lại."
+            }
+        },
+        "list": {
+            "title":"Danh sách bài tập",
+            "grid": {
+                "no": "STT",
+                "matrix1": "Ma trận 1",
+                "matrix2": "Ma trận 2",
+                "type": "Loại bài tập",
+                "level": "Độ khó",
+                "action": "Chức năng"
+            },
+            "matrixInfo": "Thông tin ma trận",
+            "taskInfo": "Thông tin bài tập",
+            "taskType": {
+                "addition": "Cộng hai ma trận",
+                "subtraction": "Trừ hai ma trận",
+                "multiplication": "Nhân hai ma trận",
+                "determinant": "Tính định thức",
+                "kramer": "Giải hệ phương trình Kramer"
+            }
+        }
+    },
+    "exam": {
+        "create": {
+            "title": "Mở cuộc thi online"
+        },
+        "enter": {
+            "title": "Tham gia cuộc thi online"
+        }
+    },
+    "regulation": {
+        "title": "Quy định",
+        "hardLevel": {
+            "level1": "Độ khó: Dễ",
+            "level2": "Độ khó: Vừa",
+            "level3": "Độ khó: Khó",
+            "maxSize": "Giá trị tối đa",
+            "minSize": "Giá trị tối thiểu"
+        },
+        "point": {
+            "point": "Số điểm",
+            "right": "Đúng hoàn toàn",
+            "halfRight": "Đúng một phần",
+            "wrong": "Sai hoàn toàn"
+        },
+        "save":{
+            "success":"Cập nhật quy định thành công",
+            "fail":"Cập nhật quy định thất bại"
         }
     },
     "msg": {}

@@ -73,6 +73,7 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
       $scope.gridApi = gridApi;
       gridApi.selection.on.rowSelectionChanged($scope, function (row) {
         if (row.isSelected) {
+          console.log($scope.userData)
           $scope.selectedRow = row.entity;
         } else {
           $scope.selectedRow = null;
@@ -172,9 +173,9 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
     return [];
   }
 
-  $scope.showPostSolution = function (row, isEdit) {
+  $scope.showPostSolution = function (row, mode) {
     $("#modalSolution").modal();
-    $scope.editSolution = isEdit;
+    $scope.solutionMode = mode;
     angular.element("#solution-area input").val("");
     $scope.solution = {};
     $scope.solution.type = row.problem_type.type_index;
@@ -221,15 +222,18 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
         // score_id: null
       }
       var api = "/api/solutions";
-      if ($scope.editSolution) {
-        api = "/api/solutions/edit";
+      if($scope.solutionMode == "solve"){
+        api = "/api/submissions";
       }
       $http.post(api, data)
         .then(function (response) {
           var msg = response.data.success ? $scope.lang.task.solution.save.success : $scope.lang.task.solution.save.fail;
+          if($scope.solutionMode == "edit"){
+            msg = response.data.success ? $scope.lang.task.solution.update.success : $scope.lang.task.solution.update.fail;
+          }
           helper.popup.info({ title: $scope.lang.label.popupInfo, message: msg, close: function () { return; } })
           if (response.data.success) {
-            $scope.editSolution = null;
+            $scope.solutionMode = null;
             $("#modalSolution").modal('hide');
             init();
           }
@@ -288,6 +292,11 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
       matrix.push(rowData);
     }
     return matrix;
+  }
+
+  $scope.getResult = function(data){
+    var msg = "<h1 class='text-center'>"+(data.user_result==true?"10":"0")+"</h1>"
+    helper.popup.info({ title: $scope.lang.label.getResult, message: msg, close: function () { return; } })
   }
 
 }

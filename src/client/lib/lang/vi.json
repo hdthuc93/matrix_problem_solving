@@ -12,6 +12,7 @@
         "logout": "Đăng xuất",
         "changeLangVi": "Đổi sang tiếng Việt",
         "changeLangEn": "Đổi sang tiếng Anh",
+        "changeTheme": "Đổi giao diện",
         "selectOne": "Chọn một",
         "selectAll": "Chọn tất cả",
         "addition": "Cộng với",
@@ -29,7 +30,9 @@
         "viewTask": "Xem bài tập",
         "postSolution": "Thêm bài giải",
         "editSolution": "Sửa bài giải",
-        "getSolution": "Xem đáp án"
+        "getSolution": "Xem đáp án",
+        "getResult": "Xem điểm",
+        "solveTask": "Giải bài tập"
     },
     "menu": {
         "home": "Trang chủ",
@@ -98,6 +101,10 @@
             "save": {
                 "success": "Lưu bài giải thành công",
                 "fail": "Lưu bài giải thất bại. Vui lòng kiểm tra lại."
+            },
+            "update": {
+                "success": "Cập nhật bài giải thành công",
+                "fail": "Cập nhật bài giải thất bại. Vui lòng kiểm tra lại."
             }
         },
         "list": {
@@ -135,14 +142,18 @@
             "level1": "Độ khó: Dễ",
             "level2": "Độ khó: Vừa",
             "level3": "Độ khó: Khó",
-            "maxCol": "Cột tối đa",
-            "maxRow": "Dòng tối đa"
+            "maxSize": "Giá trị tối đa",
+            "minSize": "Giá trị tối thiểu"
         },
         "point": {
             "point": "Số điểm",
             "right": "Đúng hoàn toàn",
             "halfRight": "Đúng một phần",
             "wrong": "Sai hoàn toàn"
+        },
+        "save":{
+            "success":"Cập nhật quy định thành công",
+            "fail":"Cập nhật quy định thất bại"
         }
     },
     "msg": {}

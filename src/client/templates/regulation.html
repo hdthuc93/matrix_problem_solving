@@ -4,84 +4,27 @@
             <h3 class="page-header">{{lang.regulation.title}}</h3>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-12 col-md-4 col-lg-4 bordered">
+    <form role="form" name="regulationForm" class="row">
+        <div ng-repeat="lv in hardLevelList track by $index" class="col-sm-4 col-md-4 col-lg-4 bordered">
             <div>
                 <div class="form-group text-center">
-                    <h4>{{lang.regulation.hardLevel.level1}}</h4>
+                    <h4>{{levelLabel[$index]}}</h4>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">{{lang.regulation.hardLevel.maxRow}}</label>
-                    <input class="form-control input-sm">
+                    <label class="control-label">{{lang.regulation.hardLevel.minSize}}</label>
+                    <input required min="2" max="{{hardLevelList[$index+1].min_size||100}}" type="number" name="fieldMin{{$index}}" ng-class="{'has-error': regulationForm.fieldMin{{$index}}.$touched && regulationForm.fieldMin{{$index}}.$invalid}"
+                        class="form-control input-sm" ng-model="lv.min_size">
                 </div>
                 <div class="form-group">
-                    <label class="control-label">{{lang.regulation.hardLevel.maxCol}}</label>
-                    <input class="form-control input-sm">
+                    <label class="control-label">{{lang.regulation.hardLevel.maxSize}}</label>
+                    <input required min="2" max="{{hardLevelList[$index+1].min_size||100}}" type="number" name="fieldMax{{$index}}" ng-class="{'has-error': regulationForm.fieldMax{{$index}}.$touched && regulationForm.fieldMax{{$index}}.$invalid}"
+                        class="form-control input-sm" ng-model="lv.max_size">
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 col-md-4 col-lg-4 bordered">
-            <div>
-                <div class="form-group text-center">
-                    <h4>{{lang.regulation.hardLevel.level2}}</h4>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">{{lang.regulation.hardLevel.maxRow}}</label>
-                    <input class="form-control input-sm">
-                </div>
-                <div class="form-group">
-                    <label class="control-label">{{lang.regulation.hardLevel.maxCol}}</label>
-                    <input class="form-control input-sm">
-                </div>
-            </div>
+        <div class="form-group text-center">
+            <button type="button" class="btn btn-primary" ng-click="save()">
+                <i class="fa fa-save"></i> {{lang.label.save}}</button>
         </div>
-        <div class="col-sm-12 col-md-4 col-lg-4 bordered">
-            <div>
-                <div class="form-group text-center">
-                    <h4>{{lang.regulation.hardLevel.level3}}</h4>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">{{lang.regulation.hardLevel.maxRow}}</label>
-                    <input class="form-control input-sm">
-                </div>
-                <div class="form-group">
-                    <label class="control-label">{{lang.regulation.hardLevel.maxCol}}</label>
-                    <input class="form-control input-sm">
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-4 col-lg-4 bordered">
-            <div>
-                <div class="form-group text-center">
-                    <h4>{{lang.regulation.point.right}}</h4>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">{{lang.regulation.point.point}}</label>
-                    <input class="form-control input-sm">
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-4 col-lg-4 bordered">
-            <div>
-                <div class="form-group text-center">
-                    <h4>{{lang.regulation.point.halfRight}}</h4>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">{{lang.regulation.point.point}}</label>
-                    <input class="form-control input-sm">
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-4 col-lg-4 bordered">
-            <div>
-                <div class="form-group text-center">
-                    <h4>{{lang.regulation.point.wrong}}</h4>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">{{lang.regulation.point.point}}</label>
-                    <input class="form-control input-sm">
-                </div>
-            </div>
-        </div>
-    </div>
+    </form>
 </div>

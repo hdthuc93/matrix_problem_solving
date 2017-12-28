@@ -40,12 +40,20 @@
                     <button ng-if="selectedRow&&!selectedRow.is_public&&userData.role != 3" type="button" class="btn btn-primary btn-xs" ng-click="showPostSolution(selectedRow)">
                         <i class="fa fa-file-text-o"></i> {{lang.label.postSolution}}
                     </button>
-                    <button ng-if="selectedRow&&electedRow.is_public&&userData.role != 3" type="button" class="btn btn-primary btn-xs" ng-click="showPostSolution(selectedRow, true)">
+                    <button ng-if="selectedRow&&selectedRow.is_public&&userData.role != 3" type="button" class="btn btn-primary btn-xs" ng-click="showPostSolution(selectedRow, 'edit')">
                         <i class="fa fa-file-text-o"></i> {{lang.label.editSolution}}
                     </button>
-                    <button ng-if="selectedRow&&selectedRow.is_public" type="button" style="padding: 0px 5px;"
+                    <button ng-if="(selectedRow&&selectedRow.is_public&&userData.role != 3)||(selectedRow&&selectedRow.is_public&&userData.role == 3&&selectedRow.user_result!='undefined')" type="button" style="padding: 0px 5px;"
                         class="btn btn-primary btn-xs" ng-click="getSolution(selectedRow)">
                         <i class="fa fa-file-text"></i> {{lang.label.getSolution}}
+                    </button>
+                    <button ng-if="(selectedRow&&selectedRow.is_public&&userData.role == 3&&selectedRow.user_result!='undefined')" type="button" style="padding: 0px 5px;"
+                        class="btn btn-primary btn-xs" ng-click="getResult(selectedRow)">
+                        <i class="fa fa-user"></i> {{lang.label.getResult}}
+                    </button>
+                    <button ng-if="selectedRow&&selectedRow.is_public&&userData.role == 3&&selectedRow.user_result!='undefined')" type="button" style="padding: 0px 5px;"
+                        class="btn btn-primary btn-xs" ng-click="showPostSolution(selectedRow, 'solve')">
+                        <i class="fa fa-file-text"></i> {{lang.label.solveTask}}
                     </button>
                     <!-- <button ng-disabled="!selectedRow" type="button" class="btn btn-primary btn-xs" ng-click="viewTask()">
                         <i class="fa fa-eye"></i> {{lang.label.viewTask}}
