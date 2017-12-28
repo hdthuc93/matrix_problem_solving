@@ -51,12 +51,14 @@ async function checkCorrectAns(req, res) {
         }
         
         inObj.time = new Date();
+
+        inObj.content = JSON.stringify(inObj.content);
         let result = await submissionDAO.insert(inObj);
 
         return res.status(200).json({
             msg: "Submission answer successfully",
             success: true,
-            data: inObj
+            data: inObj.result
         });
     } catch(ex) {
         console.log(ex);
