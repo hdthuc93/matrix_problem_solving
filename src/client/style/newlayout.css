@@ -295,13 +295,7 @@
     color: #2196f3;
 }
 
-.nav>li>a {
-    padding: 15px;
-    color: #212529;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 30px;
-}
+
 
 ul#side-menu .fa {
     text-shadow: 0px 1px 1px rgb(218, 176, 66);
@@ -462,3 +456,4 @@ i.fa.fa-list.fa-fw {
         height: 100vh;
     } */
 }
+

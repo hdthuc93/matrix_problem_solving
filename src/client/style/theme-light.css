@@ -528,11 +528,6 @@ td.matrix-cell{
 }
 .sidebar ul li a.active {
     background-color: transparent;
-    /* background-color: #d0a736;
-    font-style: italic;
-    text-decoration: underline;
-    text-decoration-line: underline;
-    text-decoration-color: #886e28;  */
 }
 .navbar-default {
     border-color: #d38a2a;
@@ -601,4 +596,12 @@ td, th {
 .header{
     font-weight: bold;
     font-size: 130%;
+}
+
+.nav>li>a {
+    padding: 15px;
+    color: #212529;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 30px;
 }

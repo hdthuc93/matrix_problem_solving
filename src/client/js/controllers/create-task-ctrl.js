@@ -11,7 +11,7 @@ function createTaskCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $loca
       headers: {
         "token": $rootScope.userData.token
       }
-    )
+    })
       .then(function (response) {
         $scope.taskTypeList = response.data.data;
       });
@@ -81,7 +81,7 @@ function createTaskCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $loca
         problem_type_id: angular.copy(parseInt($scope.data.taskType)),
         constant_id: angular.copy(parseInt(angular.fromJson($scope.data.hardLevel).id)),
         token: $rootScope.userData.token
-      }      
+      }
 
       $http.post("/api/problems", data)
         .then(function (response) {
