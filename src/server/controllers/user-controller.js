@@ -33,7 +33,7 @@ function login(req, res) {
         if(!user) {
             return res.status(200).json({
                 success: false,
-                message: "Username or password incorrect"
+                message: "Email or password incorrect"
             });
         }
 
@@ -46,7 +46,7 @@ function login(req, res) {
             } 
 
             if(isMatch) {
-                jwt.sign({ username: user.email, user_type: user.user_type_id }, config.secretKey, 
+                jwt.sign({ email: user.email, user_type: user.user_type_id }, config.secretKey, 
                         { algorithm: 'HS256', expiresIn: 60 * 60 * 24 * 7 }, (err, token) => {
                             console.log(config.secretKey)
                     if(err) {
