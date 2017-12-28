@@ -1,4 +1,5 @@
 import solutionDAO from '../DAOs/solutionDAO';
+import problemDAO from '../DAOs/problemDAO';
 
 async function insert(req, res) {
     let obj = {
@@ -9,12 +10,21 @@ async function insert(req, res) {
 
     obj.content = JSON.stringify(obj.content);
     try {
-        let result = await solutionDAO.insert(obj);
+        let solveExist = await solutionDAO.getByProblemId(obj.problem_id);
+
+        if(solveExist && solveExist.id)
+            return res.status(304).json({
+                msg: "Cannot insert solution",
+                success: false
+            });
+
+        let [resIns, resUp] = await Promise.all([solutionDAO.insert(obj), problemDAO.update({ is_public: true }, obj.problem_id)]);
         return res.status(200).json({
             msg: "Insert solution successfully",
             success: true
         });
     } catch(ex) {
+        console.log(ex);
         return res.status(500).json({
             msg: "Fail to insert solution",
             success: false
