@@ -4,6 +4,7 @@ import submissionDAO from '../DAOs/submissionDAO';
 
 async function checkCorrectAns(req, res) {
     let user = res.locals.user;
+    console.log(user);
     let inObj = {
         content: req.body.content,
         time: null,
@@ -50,7 +51,7 @@ async function checkCorrectAns(req, res) {
         }
         
         inObj.time = new Date();
-        let result = await submissionDAO.insert(obj);
+        let result = await submissionDAO.insert(inObj);
 
         return res.status(200).json({
             msg: "Submission answer successfully",
