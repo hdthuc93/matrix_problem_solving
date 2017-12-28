@@ -17,4 +17,25 @@ async function getAll(req, res) {
     }
 }
 
-export default { getAll };
+async function update(req, res) {
+    let obj = {
+        min_size: req.body.min_size,
+        max_size: req.body.max_size
+    };
+
+    try { 
+        let result = await constantDAO.update(obj, req.body.id);
+        return res.status(200).json({
+            msg: "Update constant successfully",
+            success: true
+        });
+    } catch(ex) {
+        console.log(ex);
+        return res.status(500).json({
+            msg: "Fail to update constant",
+            success: false
+        });
+    }
+}
+
+export default { getAll, update };
