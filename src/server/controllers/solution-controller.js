@@ -42,12 +42,13 @@ async function update(req, res) {
     }
 
     try { 
-        let res = await solutionDAO.update(obj, req.body.id);
+        let result = await solutionDAO.update(obj, req.body.id);
         return res.status(200).json({
             msg: "Update solution successfully",
             success: true
         });
     } catch(ex) {
+        console.log(ex);
         return res.status(500).json({
             msg: "Fail to update solution",
             success: false
