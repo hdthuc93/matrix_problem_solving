@@ -12,17 +12,19 @@ async function insert(req, res) {
     try {
         let solveExist = await solutionDAO.getByProblemId(obj.problem_id);
 
-        if(solveExist && solveExist.id)
-            return res.status(304).json({
-                msg: "Cannot insert solution",
-                success: false
+        if(solveExist && solveExist.id) {
+            let res = await solutionDAO.update({ content: obj.content }, solveExist.id);    
+            return res.status(200).json({
+                msg: "Update solution successfully",
+                success: true
             });
-
-        let [resIns, resUp] = await Promise.all([solutionDAO.insert(obj), problemDAO.update({ is_public: true }, obj.problem_id)]);
-        return res.status(200).json({
-            msg: "Insert solution successfully",
-            success: true
-        });
+        } else {
+            let [resIns, resUp] = await Promise.all([solutionDAO.insert(obj), problemDAO.update({ is_public: true }, obj.problem_id)]);
+            return res.status(200).json({
+                msg: "Insert solution successfully",
+                success: true
+            });
+        }
     } catch(ex) {
         console.log(ex);
         return res.status(500).json({
