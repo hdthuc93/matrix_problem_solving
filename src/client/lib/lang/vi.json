@@ -28,6 +28,7 @@
         "errorMessage": "Lỗi hệ thống",
         "viewTask": "Xem bài tập",
         "postSolution": "Thêm bài giải",
+        "editSolution": "Sửa bài giải",
         "getSolution": "Xem đáp án"
     },
     "menu": {

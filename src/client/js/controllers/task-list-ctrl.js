@@ -172,8 +172,9 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
     return [];
   }
 
-  $scope.showPostSolution = function (row) {
+  $scope.showPostSolution = function (row, isEdit) {
     $("#modalSolution").modal();
+    $scope.editSolution = isEdit;
     angular.element("#solution-area input").val("");
     $scope.solution = {};
     $scope.solution.type = row.problem_type.type_index;
@@ -219,11 +220,16 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
         token: $rootScope.userData.token
         // score_id: null
       }
-      $http.post("/api/solutions", data)
+      var api = "/api/solutions";
+      if ($scope.editSolution) {
+        api = "/api/solutions/edit";
+      }
+      $http.post(api, data)
         .then(function (response) {
           var msg = response.data.success ? $scope.lang.task.solution.save.success : $scope.lang.task.solution.save.fail;
           helper.popup.info({ title: $scope.lang.label.popupInfo, message: msg, close: function () { return; } })
           if (response.data.success) {
+            $scope.editSolution = null;
             $("#modalSolution").modal('hide');
             init();
           }
