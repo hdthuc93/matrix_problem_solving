@@ -3,11 +3,12 @@ import problemDAO from '../DAOs/problemDAO';
 import submissionDAO from '../DAOs/submissionDAO';
 
 async function checkCorrectAns(req, res) {
+    let user = res.locals.user;
     let inObj = {
         content: req.body.content,
         time: null,
         result: false,
-        user_id: req.body.user_id,
+        user_id: user.id,
         problem_id: req.body.problem_id
     }
 
