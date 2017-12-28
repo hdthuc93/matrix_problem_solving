@@ -14,10 +14,10 @@ async function getAll(req, res) {
         else
             [result, userSubmits] = await Promise.all([problemDAO.getAllExpanded(),
                                                         submissionDAO.getByUserId(user.id)]);
-        
+
         for(let i = 0; i < result.length; ++i) {
             result[i].content = JSON.parse(result[i].content);
-            for(let i = 0; i < userSubmits.length; ++i) {
+            for(let j = 0; j < userSubmits.length; ++j) {
                 if(result[i].id === userSubmits[j].problem_id) {
                     result[i].user_result = userSubmits[j].result;
                     break;
@@ -25,9 +25,7 @@ async function getAll(req, res) {
             }
         }
 
-        result.sort(function(a, b) { return parseInt(a.id) < parseInt(b.id) });
-
-        // console.log(result)
+        result.sort(function(a, b) { return parseInt(b.id) - parseInt(a.id) });
         
         return res.status(200).json({
             msg: "Get all problem type(s) successfully",
