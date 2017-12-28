@@ -10,7 +10,7 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
       headers: {
         "token": $rootScope.userData.token
       }
-    )
+    })
       .then(function (response) {
         $scope.taskTypeList = response.data.data;
       });
@@ -21,7 +21,7 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
       headers: {
         "token": $rootScope.userData.token
       }
-    )
+    })
       .then(function (response) {
         $scope.hardLevelList = response.data.data;
       });
@@ -93,7 +93,7 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
       headers: {
         "token": $rootScope.userData.token
       }
-    )
+    })
       .then(function (response) {
         var data = response.data.data;
         data.forEach(function (e, i) {
@@ -236,7 +236,7 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
       headers: {
         "token": $rootScope.userData.token
       }
-    )
+    })
       .then(function (response) {
         if (response.data.success && response.data.data) {
           var data = response.data.data;

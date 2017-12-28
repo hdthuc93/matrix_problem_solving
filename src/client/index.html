@@ -3,14 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <link rel="shortcut icon" href="img/favicon.ico">
     <title>{{lang.label.mainTitle}}</title>
 
 
     <!-- Font -->
     <link type="text/css" href="https://fonts.googleapis.com/css?family=Muli:400,300" rel="stylesheet">
-    
+
     <!-- Custom Fonts -->
     <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
 
@@ -30,8 +30,9 @@
     <link rel="stylesheet" type="text/css" href="angular-ui-grid/ui-grid.min.css">
 
     <!-- My Styles -->
-    <link href="style/appstyle.css" rel="stylesheet">
     <link href="style/newlayout.css" rel="stylesheet">
+    <link href="style/theme-light.css" rel="stylesheet">
+    <link ng-if="!themeLight" href="style/theme-dark.css" rel="stylesheet">
 </head>
 
 <body>
@@ -53,24 +54,28 @@
 
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
-                    <a class="dropdown-toggle icon-lang" ng-click="lang.lang!='vi' && changeLang('vi')" ng-class="{'not-apply': lang.lang!='vi'}"
-                        href="javascript:void(0)">
+                    <a class="icon-lang" ng-click="lang.lang!='vi' && changeLang('vi')" ng-class="{'not-apply': lang.lang!='vi'}" href="javascript:void(0)">
                         <img src="img/Vietnam-Flag-icon.png" title="{{lang.label.changeLangVi}}">
                     </a>
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle icon-lang" ng-click="lang.lang!='en'&& changeLang('en')" ng-class="{'not-apply': lang.lang!='en'}"
-                        href="javascript:void(0)">
+                    <a class="icon-lang" ng-click="lang.lang!='en'&& changeLang('en')" ng-class="{'not-apply': lang.lang!='en'}" href="javascript:void(0)">
                         <img src="img/United-States-Flag-icon.png" title="{{lang.label.changeLangEn}}">
                     </a>
-                    <!-- /.dropdown -->
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
-                            <i class="fa fa-user fa-fw"></i>{{userData.name}}
-                            <i class="fa fa-caret-down"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <!-- <li>
+                </li>
+                <li class="dropdown">
+                    <a>
+                        <i ng-click="themeLight = !themeLight" class="fa fa-lightbulb-o"></i>
+                    </a>
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                        <i class="fa fa-user fa-fw"></i>{{userData.name}}
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <!-- <li>
                             <a href="#">
                                 <i class="fa fa-user fa-fw"></i> Thông tin</a>
                         </li>
@@ -79,14 +84,14 @@
                                 <i class="fa fa-gear fa-fw"></i> Cài đặt</a>
                         </li>
                         <li class="divider"></li> -->
-                            <li ng-controller="loginCtrl">
-                                <a href="#" ng-click="logout()">
-                                    <i class="fa fa-sign-out fa-fw"></i> {{lang.label.logout}}</a>
-                            </li>
-                        </ul>
-                        <!-- /.dropdown-user -->
-                    </li>
-                    <!-- /.dropdown -->
+                        <li ng-controller="loginCtrl">
+                            <a href="#" ng-click="logout()">
+                                <i class="fa fa-sign-out fa-fw"></i> {{lang.label.logout}}</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
 
@@ -122,18 +127,20 @@
                                     <a href="#/create-exam"><i class="fa fa-angle-double-right"></i>{{lang.menu.admin.openExamOnline}}</a>
                                 </li> -->
                                 <li>
-                                    <a href="#/regulation"><i class="fa fa-angle-double-right"></i>{{lang.menu.admin.changeReg}}</a>
+                                    <a href="#/regulation">
+                                        <i class="fa fa-angle-double-right"></i>{{lang.menu.admin.changeReg}}</a>
                                 </li>
                             </ul>
                         </li>
                         <li ng-show="userData.role !=3">
                             <a href="javascript:void(0)">
-                                        <i class="fa fa-graduation-cap fa-fw text-success"></i>{{lang.menu.teacher.label}}
+                                <i class="fa fa-graduation-cap fa-fw text-success"></i>{{lang.menu.teacher.label}}
                                 <span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#/create-task"><i class="fa fa-angle-double-right"></i>{{lang.menu.teacher.createTask}}</a>
+                                    <a href="#/create-task">
+                                        <i class="fa fa-angle-double-right"></i>{{lang.menu.teacher.createTask}}</a>
                                 </li>
                                 <!-- <li>
                                     <a href="#/mark"><i class="fa fa-angle-double-right"></i>{{lang.menu.teacher.mark}}</a>
@@ -166,10 +173,10 @@
     <!-- /#wrapper -->
     <div id="modal_area"></div>
     <my-loading/>
-    
+
     <!-- jQuery -->
     <script src="jquery/dist/jquery.min.js"></script>
-    
+
     <!-- Bootstrap Core JavaScript -->
     <script src="bootstrap/dist/js/bootstrap.min.js"></script>
 

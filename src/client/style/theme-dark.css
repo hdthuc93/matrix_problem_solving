@@ -1,0 +1,122 @@
+body {
+    background: #fff;
+    color: #f0f0f0!important;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Muli', "Helvetica", Arial, sans-serif;
+}
+.login-page{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-color: #562d1e;
+    z-index: 1039;
+    background-image: url('../../img/bg.jpg');
+    background-size: cover;
+}
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    background-color: #562d1e;
+    border-color: #337ab7;
+}
+
+.has-error{
+    border-color: rgba(247, 17, 17, 0.84) !important;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 2px rgba(255, 36, 36, 0.82);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 1px rgba(239, 32, 32, 0.87);
+}
+.input-error{
+    box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 1px inset, rgb(179, 0, 0) 0px 0px 8px !important;
+    border-color: rgb(177, 0, 0) !important;
+}
+
+.dropzone {
+    min-height: 150px;
+    border: 2px solid rgba(0,0,0,0.3);
+    background: white;
+    padding: 20px 20px;
+}
+.dropzone:hover {
+    cursor: pointer;
+    border-color: brown;
+    background-color: #e5f3c3;
+}
+.dropzone {
+    text-align: center;
+    margin: 2em 0;
+}
+
+.dragover {
+    border-color: brown;
+    background-color: #e5f3c3;
+}
+
+.img-preview{
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.field-area{
+    border: 1px solid #a0a0a0;
+    padding: 10px;
+    background-color: #e9f1e8;
+    margin-bottom: 10px;
+}
+
+.navbar-default .navbar-brand {
+    color: #e6a756;
+}
+.navbar-default {
+    background-color: rgba(47,23,15,.9);
+}
+#wrapper {
+    width: 100%;
+    background-color: rgba(47,23,15,.9);
+}
+.sidebar ul li {
+    border-bottom: 1px solid rgba(19, 9, 6, 0.9);
+}
+.sidebar ul li.active {
+    border-bottom: 1px solid rgba(19, 9, 6, 0.9);    
+    background-color: rgba(19, 9, 6, 0.9);
+}
+.navbar-default {
+    border-color: rgba(19, 9, 6, 0.9);
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: rgba(19, 9, 6, 0.9);
+}
+.nav>li>a:focus, .nav>li>a:hover {
+    background-color: rgba(19, 9, 6, 0.9);
+}
+
+#page-wrapper {
+    background-color: rgba(177, 127, 64, 0.9);
+}
+
+.page-header {
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(18,79,80,0.88);
+}
+
+.bordered>div:first-child{
+    border: 1px solid rgba(202, 146, 74, 0.9);
+    background-color: #ffe5bd;
+}
+.bordered input{
+    border-color: #93a3a9!important;
+}
+.nav>li>a {
+    color: #ffba62;
+}
+
+.box-2 .row~.row {
+    background: rgb(77, 47, 24);
+    color: #f1f0f0;
+}
+.box-2 label {
+    color: #f1f0f0;
+}
