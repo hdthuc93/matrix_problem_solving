@@ -6,14 +6,22 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
   $scope.equationVariables = ['x', 'y', 'z', 't', 'u', 'v', 'k', 'l', 'm', 'xx', 'yy', 'zz', 'tt', 'uu', 'vv', 'kk', 'll', 'mm'];
 
   $scope.getTypeList = function () {
-    $http.get("/api/problems/type")
+    $http.get("/api/problems/type", {
+      headers: {
+        "token": $rootScope.userData.token
+      }
+    )
       .then(function (response) {
         $scope.taskTypeList = response.data.data;
       });
   }
 
   $scope.getHardLevelList = function () {
-    $http.get("/api/problems/constant")
+    $http.get("/api/problems/constant", {
+      headers: {
+        "token": $rootScope.userData.token
+      }
+    )
       .then(function (response) {
         $scope.hardLevelList = response.data.data;
       });
@@ -81,7 +89,11 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
     if (param.hardLevel) {
       hardLevel = angular.fromJson(param.hardLevel) ? parseInt(angular.fromJson(param.hardLevel).id) : -1;
     }
-    $http.get("/api/problems/type/" + type + "/constant/" + hardLevel)
+    $http.get("/api/problems/type/" + type + "/constant/" + hardLevel, {
+      headers: {
+        "token": $rootScope.userData.token
+      }
+    )
       .then(function (response) {
         var data = response.data.data;
         data.forEach(function (e, i) {
@@ -129,7 +141,7 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
   function renderMatrix(data, type) {
     if (type == 5) {
       var content = "<table align='center' width='100%'>";
-      var equationVariables = ['x', 'y', 'z', 't', 'u', 'v', 'k', 'l', 'm', 'xx', 'yy', 'zz', 'tt', 'uu', 'vv', 'kk', 'll', 'mm']
+      var equationVariables = ['x', 'y', 'z', 't', 'u', 'v', 'k', 'l', 'm', 'xx', 'yy', 'zz', 'tt', 'uu', 'vv', 'kk', 'll', 'mm'];
       for (var row = 0; row < data.length; row++) {
         content += "<tr><td>";
         for (var col = 0; col < data[row].length; col++) {
@@ -204,13 +216,15 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
       var data = {
         content: content,
         problem_id: $scope.selectedRow.id,
-        score_id: null
+        token: $rootScope.userData.token
+        // score_id: null
       }
       $http.post("/api/solutions", data)
         .then(function (response) {
           var msg = response.data.success ? $scope.lang.task.solution.save.success : $scope.lang.task.solution.save.fail;
           helper.popup.info({ title: $scope.lang.label.popupInfo, message: msg, close: function () { return; } })
           if (response.data.success) {
+            $("#modalSolution").modal('hide');
             init();
           }
         });
@@ -218,12 +232,38 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
   }
 
   $scope.getSolution = function (row) {
-    $http.get("/api/solutions/" + row.id)
+    $http.get("/api/solutions/" + row.id, {
+      headers: {
+        "token": $rootScope.userData.token
+      }
+    )
       .then(function (response) {
         if (response.data.success && response.data.data) {
           var data = response.data.data;
-          console.log(777999, data);
-          helper.popup.info({ title: $scope.lang.label.solution, message: "Viết code", close: function () { return; } })
+          var content = "";
+          if (row.problem_type.type_index == 1 || row.problem_type.type_index == 2 || row.problem_type.type_index == 3) {
+            content = renderMatrix(data.content);
+          }
+          if (row.problem_type.type_index == 4) {
+            for (var i = 0; i < data.content.length - 1; i++) {
+              content += ("<p></p><p class='text-center'>" + $scope.lang.label.minusCol + " " + (i + 1) + " " + $scope.lang.label.minusRow + " " + (i + 1) + " " + "</p>")
+              content += renderMatrix(data.content[i]);
+            }
+            content += ("<p></p><p class='text-center header'>d = " + data.content[data.content.length - 1] + "</p>");
+          }
+          if (row.problem_type.type_index == 5) {
+            content = "<table align='center' width='100%'><tr>";
+            var equationVariables = ['x', 'y', 'z', 't', 'u', 'v', 'k', 'l', 'm', 'xx', 'yy', 'zz', 'tt', 'uu', 'vv', 'kk', 'll', 'mm'];
+            for (var i = 0; i < data.content[0].length; i++) {
+              content += ("<td" + (i < data.content[0].length - 1 ? "" : " class='header'") + ">d" + (i < data.content[0].length - 1 ? (i + 1) : "") + " = " + data.content[0][i] + "</td>");
+            }
+            content += "</tr><tr>"
+            for (var i = 0; i < data.content[1].length; i++) {
+              content += ("<td>" + equationVariables[i] + " = " + data.content[1][i] + "</td>");
+            }
+            content += "</tr></table>";
+          }
+          helper.popup.info({ title: $scope.lang.label.solution, message: content, close: function () { return; } })
         } else {
           helper.popup.info({ title: $scope.lang.label.solution, message: $scope.lang.label.noData, close: function () { return; } })
         }
@@ -232,7 +272,6 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
   }
 
   function getSolutionData(url) {
-    console.log(angular.element("#solution-area " + url + " tr"), "#solution-area " + url + " tr");
     var matrixRows = angular.element("#solution-area " + url + " tr");
     var matrix = [];
     for (row = 0; row < matrixRows.length; row++) {
