@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import config from '../configs/const';
-import User from '../models/user-model';
+import User from '../models/user';
 
 
 function authenToken(req, res, next) {
