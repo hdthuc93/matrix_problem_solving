@@ -5,7 +5,6 @@ import User from '../models/user';
 
 function authenToken(req, res, next) {
     const token = req.header('token') || req.body.token;
-    console.log(token);
 
     if(token) {
         jwt.verify(token, config.secretKey, (err, decoded) => {
