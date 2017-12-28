@@ -6,14 +6,22 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
   $scope.equationVariables = ['x', 'y', 'z', 't', 'u', 'v', 'k', 'l', 'm', 'xx', 'yy', 'zz', 'tt', 'uu', 'vv', 'kk', 'll', 'mm'];
 
   $scope.getTypeList = function () {
-    $http.get("/api/problems/type")
+    $http.get("/api/problems/type", {
+      headers: {
+        "token": $rootScope.userData.token
+      }
+    )
       .then(function (response) {
         $scope.taskTypeList = response.data.data;
       });
   }
 
   $scope.getHardLevelList = function () {
-    $http.get("/api/problems/constant")
+    $http.get("/api/problems/constant", {
+      headers: {
+        "token": $rootScope.userData.token
+      }
+    )
       .then(function (response) {
         $scope.hardLevelList = response.data.data;
       });
@@ -81,7 +89,11 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
     if (param.hardLevel) {
       hardLevel = angular.fromJson(param.hardLevel) ? parseInt(angular.fromJson(param.hardLevel).id) : -1;
     }
-    $http.get("/api/problems/type/" + type + "/constant/" + hardLevel)
+    $http.get("/api/problems/type/" + type + "/constant/" + hardLevel, {
+      headers: {
+        "token": $rootScope.userData.token
+      }
+    )
       .then(function (response) {
         var data = response.data.data;
         data.forEach(function (e, i) {
@@ -204,6 +216,7 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
       var data = {
         content: content,
         problem_id: $scope.selectedRow.id,
+        token: $rootScope.userData.token
         // score_id: null
       }
       $http.post("/api/solutions", data)
@@ -219,7 +232,11 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
   }
 
   $scope.getSolution = function (row) {
-    $http.get("/api/solutions/" + row.id)
+    $http.get("/api/solutions/" + row.id, {
+      headers: {
+        "token": $rootScope.userData.token
+      }
+    )
       .then(function (response) {
         if (response.data.success && response.data.data) {
           var data = response.data.data;

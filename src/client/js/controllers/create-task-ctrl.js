@@ -7,14 +7,24 @@ function createTaskCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $loca
   $scope.equationVariables = ['x', 'y', 'z', 't', 'u', 'v', 'k', 'l', 'm', 'xx', 'yy', 'zz', 'tt', 'uu', 'vv', 'kk', 'll', 'mm'];
 
   $scope.getTypeList = function () {
-    $http.get("/api/problems/type")
+    $http.get("/api/problems/type", {
+      headers: {
+        "token": $rootScope.userData.token
+      }
+    )
       .then(function (response) {
         $scope.taskTypeList = response.data.data;
       });
   }
 
+  console.log()
+
   $scope.getHardLevelList = function () {
-    $http.get("/api/problems/constant")
+    $http.get("/api/problems/constant", {
+      headers: {
+        "token": $rootScope.userData.token
+      }
+    })
       .then(function (response) {
         $scope.hardLevelList = response.data.data;
       });
@@ -69,8 +79,9 @@ function createTaskCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $loca
       var data = {
         content: content,
         problem_type_id: angular.copy(parseInt($scope.data.taskType)),
-        constant_id: angular.copy(parseInt(angular.fromJson($scope.data.hardLevel).id))
-      }
+        constant_id: angular.copy(parseInt(angular.fromJson($scope.data.hardLevel).id)),
+        token: $rootScope.userData.token
+      }      
 
       $http.post("/api/problems", data)
         .then(function (response) {
