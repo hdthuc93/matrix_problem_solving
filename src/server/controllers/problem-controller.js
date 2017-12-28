@@ -1,18 +1,29 @@
 import problemDAO from '../DAOs/problemDAO';
+import submissionDAO from '../DAOs/submissionDAO';
 
 async function getAll(req, res) {
     let problem_type_id = req.params.type == -1 ? null : req.params.type;
     let constant_id = req.params.const == -1 ? null : req.params.const;
+    let user = res.locals.user;
 
     try {
-        let result;
+        let result, userSubmits;
         if(problem_type_id || constant_id)
-            result = await problemDAO.getByCondition(problem_type_id, constant_id);
+            [result, userSubmits] = await Promise.all([problemDAO.getByCondition(problem_type_id, constant_id),
+                                                        submissionDAO.getByUserId(user.id)]);
         else
-            result = await problemDAO.getAllExpanded();
-
-        for(let i = 0; i < result.length; ++i)
+            [result, userSubmits] = await Promise.all([problemDAO.getAllExpanded(),
+                                                        submissionDAO.getByUserId(user.id)]);
+        
+        for(let i = 0; i < result.length; ++i) {
             result[i].content = JSON.parse(result[i].content);
+            for(let i = 0; i < userSubmits.length; ++i) {
+                if(result[i].id === userSubmits[j].problem_id) {
+                    result[i].user_result = userSubmits[j].result;
+                    break;
+                }
+            }
+        }
 
         result.sort(function(a, b) { return parseInt(a.id) < parseInt(b.id) });
 

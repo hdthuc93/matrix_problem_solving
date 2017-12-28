@@ -17,8 +17,10 @@ function authenToken(req, res, next) {
             }
 
             User.findOne({ where: { email: decoded.email }}).then((user) => {
-                if(user)
+                if(user) {
+                    res.locals.user = user;
                     return next();
+                }
 
                 return res.status(200).json({
                     success: false,
