@@ -6,6 +6,7 @@ const router = express.Router();
 router.route('/')
     .post(solutionCtrl.insert);
 
+router.route('/edit', solutionCtrl.update);
 router.route('/:id').get(solutionCtrl.getById);
 
 export default router;
