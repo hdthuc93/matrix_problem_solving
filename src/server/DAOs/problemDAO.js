@@ -31,8 +31,6 @@ class ProblemDAO extends MasterDAO {
             }]
         });
 
-        console.log(result);
-
         let outData = {
             constant_id: result['constant']['id'],
             min_size: result['constant']['min_size'],

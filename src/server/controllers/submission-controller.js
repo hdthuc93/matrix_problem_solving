@@ -4,14 +4,13 @@ import submissionDAO from '../DAOs/submissionDAO';
 
 async function checkCorrectAns(req, res) {
     let user = res.locals.user;
-    console.log(user);
     let inObj = {
         content: req.body.content,
         time: null,
         result: false,
         user_id: user.id,
         problem_id: req.body.problem_id
-    }
+    };
 
     try {
         let [constAndType, solution] = await Promise.all([
@@ -30,7 +29,7 @@ async function checkCorrectAns(req, res) {
             if(inObj.content.length === content.length) {
                 let i = 0;
                 for(; i < content.length - 1; ++i) {
-                    if(!checkCorrectAns(inObj.content[i], content[i])) {
+                    if(!checkMatrixEqual(inObj.content[i], content[i])) {
                         flag = false;
                         break;
                     }

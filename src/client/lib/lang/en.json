@@ -115,7 +115,7 @@
                 "matrix2": "Matrix 2",
                 "type": "Problem type",
                 "level": "Level",
-                "action": "Chức năng"
+                "action": "Action"
             },
             "matrixInfo": "Matrix info",
             "taskInfo": "Example info",
