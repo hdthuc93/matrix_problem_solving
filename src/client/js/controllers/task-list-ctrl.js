@@ -35,6 +35,7 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
     getTaskList({});
     $scope.getTypeList();
     $scope.getHardLevelList();
+    $scope.selectedRow = null;
   }
   init();
 
@@ -309,7 +310,6 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
   }
 
   $scope.hasResult = function(data){
-    console.log(typeof data == 'boolean')
     return (typeof data == 'boolean');
   }
 }
