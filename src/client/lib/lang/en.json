@@ -60,100 +60,100 @@
         "register": "Register"
     },
     "register": {
-        "firstName": "Tên",
-        "lastName": "Họ",
-        "fullName": "Tên đầy đủ",
-        "phoneNumber": "Số điện thoại",
-        "birthday": "Ngày sinh (dd/mm/yyyy)",
-        "email": "Địa chỉ Email",
-        "password": "Mật khẩu",
-        "rePassword": "Nhập lại mật khẩu",
-        "backToLogin": "Quay lại đăng nhập",
-        "registerFail": "Đăng ký thất bại.",
-        "registerSuccess": "Đăng ký thành công"
+        "firstName": "First name",
+        "lastName": "Last name",
+        "fullName": "Full name",
+        "phoneNumber": "Phone num",
+        "birthday": "Birthday (dd/mm/yyyy)",
+        "email": "Email",
+        "password": "Password",
+        "rePassword": "Confirm password",
+        "backToLogin": "Back to login",
+        "registerFail": "Fail to register",
+        "registerSuccess": "Register successfully"
     },
     "task": {
         "create": {
-            "title": "Soạn bài tập",
-            "selectInfo": "Chọn thông tin",
-            "taskType": "Chọn loại bài tập",
-            "hardLevel": "Chọn độ khó",
-            "level1": "Dễ",
-            "level2": "Vừa",
-            "level3": "Khó",
-            "row": "Chọn số dòng",
-            "col": "Chọn số cột",
-            "matrixSquare": "Chọn ma trận vuông cấp",
-            "fillTask": "Nhập nội dung đề bài",
+            "title": "Create a new example",
+            "selectInfo": "Select info",
+            "taskType": "Select problem type",
+            "hardLevel": "Select problem level",
+            "level1": "Easy",
+            "level2": "Medium",
+            "level3": "Hard",
+            "row": "Select row number",
+            "col": "Select column number",
+            "matrixSquare": "Select square matrix level",
+            "fillTask": "Input content",
             "save": {
-                "success": "Tạo ma trận thành công",
-                "fail": "Tạo ma trận thất bại. Vui lòng kiểm tra lại."
+                "success": "Created matrix successfully",
+                "fail": "Failed to create matrix. Please try again."
             }
         },
         "mark": {
-            "title": "Chấm điểm"
+            "title": "Submit"
         },
         "solve": {
-            "title": "Giải bài tập ma trận"
+            "title": "Solve the example"
         },
         "solution": {
-            "title": "Nhập bài giải ma trận",
+            "title": "Input a solution",
             "save": {
-                "success": "Lưu bài giải thành công",
-                "fail": "Lưu bài giải thất bại. Vui lòng kiểm tra lại."
+                "success": "Submit solution successfully",
+                "fail": "Failed to submit solution. Please try again."
             },
             "update": {
-                "success": "Cập nhật bài giải thành công",
-                "fail": "Cập nhật bài giải thất bại. Vui lòng kiểm tra lại."
+                "success": "Update solution successfully",
+                "fail": "Failed to update solution. Please try again."
             }
         },
         "list": {
-            "title":"Danh sách bài tập",
+            "title":"List examples",
             "grid": {
-                "no": "STT",
-                "matrix1": "Ma trận 1",
-                "matrix2": "Ma trận 2",
-                "type": "Loại bài tập",
-                "level": "Độ khó",
+                "no": "No",
+                "matrix1": "Matrix 1",
+                "matrix2": "Matrix 2",
+                "type": "Problem type",
+                "level": "Level",
                 "action": "Chức năng"
             },
-            "matrixInfo": "Thông tin ma trận",
-            "taskInfo": "Thông tin bài tập",
+            "matrixInfo": "Matrix info",
+            "taskInfo": "Example info",
             "taskType": {
-                "addition": "Cộng hai ma trận",
-                "subtraction": "Trừ hai ma trận",
-                "multiplication": "Nhân hai ma trận",
-                "determinant": "Tính định thức",
-                "kramer": "Giải hệ phương trình Kramer"
+                "addition": "Adding matrices",
+                "subtraction": "Subtracting matrices",
+                "multiplication": "Multiply matrices",
+                "determinant": "Determinants",
+                "kramer": "Cramer's rule"
             }
         }
     },
     "exam": {
         "create": {
-            "title": "Mở cuộc thi online"
+            "title": "Open the contest"
         },
         "enter": {
-            "title": "Tham gia cuộc thi online"
+            "title": "Join the contest"
         }
     },
     "regulation": {
-        "title": "Quy định",
+        "title": "Rule",
         "hardLevel": {
-            "level1": "Độ khó: Dễ",
-            "level2": "Độ khó: Vừa",
-            "level3": "Độ khó: Khó",
-            "maxSize": "Giá trị tối đa",
-            "minSize": "Giá trị tối thiểu"
+            "level1": "Level: easy",
+            "level2": "Level: medium",
+            "level3": "Level: hard",
+            "maxSize": "Max size",
+            "minSize": "Min size"
         },
         "point": {
-            "point": "Số điểm",
-            "right": "Đúng hoàn toàn",
-            "halfRight": "Đúng một phần",
-            "wrong": "Sai hoàn toàn"
+            "point": "Point",
+            "right": "Correct",
+            "halfRight": "Partially correct",
+            "wrong": "Wrong"
         },
         "save":{
-            "success":"Cập nhật quy định thành công",
-            "fail":"Cập nhật quy định thất bại"
+            "success":"Update the rule successfully",
+            "fail":"Failed to update the rule"
         }
     },
     "msg": {}
