@@ -73,7 +73,6 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
       $scope.gridApi = gridApi;
       gridApi.selection.on.rowSelectionChanged($scope, function (row) {
         if (row.isSelected) {
-          console.log($scope.userData)
           $scope.selectedRow = row.entity;
         } else {
           $scope.selectedRow = null;
@@ -97,10 +96,20 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
     })
       .then(function (response) {
         var data = response.data.data;
+        /*
+        is_public: true: có đáp án ==> học sinh có thể làm bài
+        user_result: đã làm bài và có điểm ==> học sinh xem điểm*/
         data.forEach(function (e, i) {
           data[i] = e;
           data[i].no = i + 1;
           data[i].constant_name = constant[data[i]["constant"]["level"] - 1];
+          data[i].hasResult = $scope.hasResult(data[i].user_result);
+          // if(data[i].hasResult == true || data[i].user_result){
+          //   data[i].user_result = (data.user_result==true?"10":"0");
+          // }else{
+          //   data[i].user_result = "";
+          // }
+          // console.log(typeof data[i].user_result)
         });
         $scope.taskList.data = data;
       });
@@ -299,4 +308,8 @@ function taskListCtrl($scope, $cookieStore, $http, $rootScope, $timeout, $locati
     helper.popup.info({ title: $scope.lang.label.getResult, message: msg, close: function () { return; } })
   }
 
+  $scope.hasResult = function(data){
+    console.log(typeof data == 'boolean')
+    return (typeof data == 'boolean');
+  }
 }
